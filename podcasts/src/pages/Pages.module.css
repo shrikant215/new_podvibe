@@ -1,0 +1,307 @@
+@import '../utils/Themes.css';
+
+.DashbordMain{
+  padding: 20px 30px;
+  padding-bottom: 200px;
+  height: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  @media (max-width: 768px) {
+    padding: 6px 10px;
+  }
+}
+.filterContainer{
+    /* height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg);
+    border-radius: 10px;
+    padding: 20px 30px;
+}
+.Topic{
+    color: var(--text_primary);
+    font-size: 24px;
+    font-weight: 540;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width: 768px) {
+        font-size: 18px;
+      }
+}
+span{
+    color: var(--primary);
+    font-size: 16px;
+    font-weight: 400;
+    @media (max-width: 768px) {
+        font-size: 14px;
+      }
+}
+.podcasts{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    padding: 18px 6px;
+    margin-bottom: 50px;
+    @media (max-width: 768px) {
+        justify-content: center;
+      }
+}
+
+.favContainer{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 18px 6px;
+  @media (max-width: 550px) {
+    justify-content: center;
+  }
+}
+/* search */
+
+.searchBox{
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 550px) {
+    width: 45%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+}
+.searchContainer{
+  position: relative;
+  background-color: transparent;
+  border: 0.2px solid white;
+  padding: 10px 30px;
+  height: 2rem;
+  width: 40rem;
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  gap: 10px;
+  justify-content: center;
+  /* left: 19rem;
+  top: 20px; */
+}
+.searchsearch{
+ color: white;
+ font-size: 30px;
+}
+.searchInput{
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  outline: none;
+  color: white;
+}
+.SearchMain{
+  margin-top: 20px;
+  padding: 20px 50px;
+  padding-bottom: 200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  @media (max-width: 768px) {
+    padding: 6px 10px;
+  }
+}
+.SearchfilterContainer{
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 30px 30px;
+}
+.podcastss{
+  display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    padding: 18px 6px;
+    margin-bottom: 50px;
+    @media (max-width: 768px) {
+        justify-content: center;
+    padding: 10px 2px;
+    flex-wrap:wrap;
+
+      }
+}
+
+.searchpage{
+  overflow-y: scroll;
+}
+
+
+/* podcastDetails */
+
+.pdConatoner{
+  padding: 20px 30px;
+  padding-bottom: 200px;
+  height: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  @media (max-width: 768px) {
+    padding: 6px 10px;
+  }
+}
+
+.pdImg{
+  height: 15rem;
+  width: 15rem;
+  border-radius: 10px;
+}
+.pdPodDetails{
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  margin: 40px;
+  padding: 20px;
+  border-radius: 10px ;
+}
+.pdBox{
+  display: flex;
+  gap: 20px;
+}
+.pdtitle{
+  font-size: 30px;
+  color: white;
+  font-weight: 600;
+}
+.pdDic{
+  color: rgb(193, 192, 192);
+  font-size: 15px;
+  font-weight: 500;
+}
+.pdTags{
+  color: white;
+  font-weight: 500;
+  background-color: rgb(98, 97, 97);
+  width: 200px;
+  height: 25px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+
+}
+.pdFooter{
+  margin-top: 60px;
+}
+.pdPlayicon{
+  align-items: center;
+  display: flex;
+  height: 100px;
+  width: 100px;
+  color:blueviolet;
+}
+
+/* episodes */
+.episodeContainer{
+  background-color: var(--bg);
+  border-radius: 10px;
+  /* margin: 10px; */
+  margin-top: 30px;
+  padding: 20px 30px;
+  cursor: pointer;
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.1);
+    &:hover{
+        cursor: pointer;
+        transform: translateY(-8px);
+        transition: all 0.4s ease-in-out;
+        box-shadow: 0 0 18px 0 rgba(0, 0, 0, 0.3);
+        filter: brightness(1.3);
+    }
+
+}
+.episodebox{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.epImg{
+  height: 20%;
+  width: 15%;
+  border-radius: 10px;
+}
+.videoConatiner{
+  background-color: var(--bg);
+  cursor: pointer;
+  /* margin: 50px; */
+}
+.video{
+  height: 100%;
+  max-height: 500px;
+  border-radius: 16px;
+  margin: 0px 20px;
+  object-fit: cover;
+  margin-top: 30px;
+  /* margin: 20px; */
+  /* padding: 20px;
+  overflow: hidden; */
+}
+.videossss{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  outline: none;
+  margin: 30px;
+  padding: 30px;
+  /* width: 50rem; */
+  /* margin-left: 22em; */
+}
+.videossss :focus{
+  outline: none;
+}
+.pdContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: scroll;
+}
+
+
+
+.videocontainer{
+  width: 100%;
+height: 100%;
+position: absolute;
+top: 0;
+left: 0;
+background-color: #000000a7;
+display: flex;
+align-items: top;
+justify-content: center;
+overflow-y: scroll;
+transition: all 0.5s ease;
+}
+
+.videoWrapper{
+  max-width: 800px;
+width: 100%;
+border-radius: 16px;
+margin: 50px 20px;
+height: min-content;
+background-color: var(--bg);
+color: white;
+padding: 10px;
+display: flex;
+flex-direction: column;
+position: relative;
+padding: 10px;
+}
