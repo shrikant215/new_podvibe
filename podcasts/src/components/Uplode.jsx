@@ -79,7 +79,7 @@ function Upload({ setUplodeOpen, loginUser }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
-
+  
     // Upload video file
     const videoStorageRef = ref(
       getStorage(),
@@ -89,7 +89,7 @@ function Upload({ setUplodeOpen, loginUser }) {
       videoStorageRef,
       selectedVideoFile
     );
-
+  
     // Upload thumbnail image
     const thumbnailStorageRef = ref(
       getStorage(),
@@ -99,7 +99,7 @@ function Upload({ setUplodeOpen, loginUser }) {
       thumbnailStorageRef,
       selectedTumbnailFile
     );
-
+  
     // Log upload progress for video file
     videoUploadTask.on(
       "state_changed",
@@ -113,7 +113,7 @@ function Upload({ setUplodeOpen, loginUser }) {
         setLoading(false);
       }
     );
-
+  
     // Log upload progress for thumbnail image
     thumbnailUploadTask.on(
       "state_changed",
@@ -127,11 +127,11 @@ function Upload({ setUplodeOpen, loginUser }) {
         setLoading(false);
       }
     );
-
+  
     // Wait for both uploads to complete
     try {
       await Promise.all([videoUploadTask, thumbnailUploadTask]);
-
+  
       // Once uploads are completed, get download URLs
       const videoDownloadURL = await getDownloadURL(
         videoUploadTask.snapshot.ref
@@ -139,10 +139,10 @@ function Upload({ setUplodeOpen, loginUser }) {
       const thumbnailDownloadURL = await getDownloadURL(
         thumbnailUploadTask.snapshot.ref
       );
-
+  
       console.log("Video file available at", videoDownloadURL);
       console.log("Thumbnail image available at", thumbnailDownloadURL);
-
+  
       const podcastData = {
         uploderId: loginUser,
         name: podcastName,
@@ -159,9 +159,9 @@ function Upload({ setUplodeOpen, loginUser }) {
           },
         ],
       };
-
+  
       await addDoc(collection(db, "podcasts"), podcastData);
-
+  
       setLoading(false);
       setUplodeOpen(false);
     } catch (error) {
@@ -169,6 +169,7 @@ function Upload({ setUplodeOpen, loginUser }) {
       setLoading(false);
     }
   };
+  
 
   const handleClose = () => {
     setUplodeOpen(false);

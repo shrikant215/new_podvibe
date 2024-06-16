@@ -92,4 +92,4 @@ function Podcastcard({ item, favorites, setFavorites }) {
   );
 }
 
-export default Podcastcard;
+export default Podcastcard
