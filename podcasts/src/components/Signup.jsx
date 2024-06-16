@@ -36,7 +36,7 @@ function Signup({ setOpenSignUp, setOpenSigniN }) {
 
   const handleSendOTP = async () => {
     try {
-      console.log("gggggggg",formData.email);
+      console.log("handleSendOTP",formData.email);
       const response = await axios.post(`${apiUrl}/api/sendSignupOTP`, { email: formData.email });
       console.log("optResopnce",response)
       alert("OTP sent successfully!");
@@ -58,6 +58,8 @@ function Signup({ setOpenSignUp, setOpenSigniN }) {
       alert("Signup successful");
     } catch (error) {
       console.log(error.response.data.message);
+      alert(error.response.data.message);
+
     }
   };
 
@@ -217,14 +219,14 @@ function Signup({ setOpenSignUp, setOpenSigniN }) {
                 />
               </div>
 
-              <div onClick={handleSendOTP} style={{fontSize:'17px',fontWeight:'500',margin:'10px', color:'#be1adb'}}>Send OTP</div>
+              <div onClick={handleSendOTP} style={{fontSize:'17px',fontWeight:'500',margin:'10px', color:'#be1adb', cursor:'pointer'}}>Send OTP</div>
 
               <div className={styles.button}>
                 <button
                   className={styles.buttonInput}
                   type="submit"
                   disabled={!buttonDissable}
-                  style={{ backgroundColor: buttonDissable ? '#be1adb' : '' }}
+                  style={{ backgroundColor: !buttonDissable ? '' : '#be1adb' }}
                 >
                   Create Account
                 </button>
