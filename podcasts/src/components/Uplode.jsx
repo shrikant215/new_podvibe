@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Typescard.module.css";
 import { CloseRounded, CloudUploadRounded } from "@mui/icons-material";
-import { Dialog, DialogTitle, DialogContent, Modal } from "@mui/material";
-import axios from "axios";
+import { DialogTitle, DialogContent, Modal } from "@mui/material";
 import { CircularProgress } from "@mui/material";
 
 import { initializeApp } from "firebase/app"; // Import initializeApp from 'firebase/app'
