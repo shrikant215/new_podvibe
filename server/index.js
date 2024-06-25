@@ -73,8 +73,11 @@ const transporter = nodemailer.createTransport({
 // Simulated in-memory database for storing OTPs
 const otpMap = {};
 
+const apiRouter = express.Router();
+
+
 // Route to send OTP for signup
-app.post("/api/sendSignupOTP", async (req, res) => {
+apiRouter.post("/api/sendSignupOTP", async (req, res) => {
   const { email } = req.body;
 
   const existingUser = await User.findOne({ email });
@@ -112,7 +115,7 @@ app.post("/api/sendSignupOTP", async (req, res) => {
   });
 
   // Route to verify OTP for signup
-app.post("/api/verifySignupOTP", async (req, res) => {
+  apiRouter.post("/api/verifySignupOTP", async (req, res) => {
   const { email, otp } = req.body;
 
   // Verify OTP
@@ -125,7 +128,7 @@ app.post("/api/verifySignupOTP", async (req, res) => {
 
 
 // Sign-up endpoint
-app.post("/api/signup", async (req, res) => {
+apiRouter.post("/api/signup", async (req, res) => {
   const { name, email, password, otp } = req.body;
 
   // Verify OTP
@@ -146,6 +149,19 @@ app.post("/api/signup", async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
+});
+
+
+
+// Use the API router
+app.use('/api', apiRouter);
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '../podcasts/build')));
+
+// The "catchall" handler: for any request that doesn't match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../podcasts/build/index.html'));
 });
 
 
