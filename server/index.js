@@ -164,6 +164,10 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../podcasts/build/index.html'));
 });
 
+app.get("/", (req, res) => {
+  res.json("Hllow");
+})
+
 
 
 // Define port
