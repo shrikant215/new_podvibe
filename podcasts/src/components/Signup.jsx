@@ -225,8 +225,8 @@ function Signup({ setOpenSignUp, setOpenSigniN }) {
                 <button
                   className={styles.buttonInput}
                   type="submit"
-                  disabled={!buttonDissable}
-                  style={{ backgroundColor: !buttonDissable ? '' : '#be1adb' }}
+                  // disabled={!buttonDissable}
+                  style={{ backgroundColor: buttonDissable ? '#be1adb' : '' }}
                 >
                   Create Account
                 </button>
