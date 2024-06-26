@@ -66,18 +66,17 @@ const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "shrikantjk3@gmail.com",
-    pass: "atih vacn osxr qnkf",
+    pass: "zipi auil dxzo vwva",
   },
 });
 
 // Simulated in-memory database for storing OTPs
 const otpMap = {};
 
-const apiRouter = express.Router();
-
+// const apiRouter = express.Router();
 
 // Route to send OTP for signup
-apiRouter.post("/api/sendSignupOTP", async (req, res) => {
+app.post("/api/sendSignupOTP", async (req, res) => {
   const { email } = req.body;
 
   const existingUser = await User.findOne({ email });
@@ -115,7 +114,7 @@ apiRouter.post("/api/sendSignupOTP", async (req, res) => {
   });
 
   // Route to verify OTP for signup
-  apiRouter.post("/api/verifySignupOTP", async (req, res) => {
+  app.post("/api/verifySignupOTP", async (req, res) => {
   const { email, otp } = req.body;
 
   // Verify OTP
@@ -128,7 +127,7 @@ apiRouter.post("/api/sendSignupOTP", async (req, res) => {
 
 
 // Sign-up endpoint
-apiRouter.post("/api/signup", async (req, res) => {
+app.post("/api/signup", async (req, res) => {
   const { name, email, password, otp } = req.body;
 
   // Verify OTP
@@ -153,20 +152,20 @@ apiRouter.post("/api/signup", async (req, res) => {
 
 
 
-// Use the API router
-app.use('/api', apiRouter);
+// // Use the API router
+// app.use('/api', app);
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, '../podcasts/build')));
+// // Serve static files from the React app
+// app.use(express.static(path.join(__dirname, '../podcasts/build')));
 
-// The "catchall" handler: for any request that doesn't match one above, send back React's index.html file.
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../podcasts/build/index.html'));
-});
+// // The "catchall" handler: for any request that doesn't match one above, send back React's index.html file.
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../podcasts/build/index.html'));
+// });
 
-app.get("/", (req, res) => {
-  res.json("Hllow");
-})
+// app.get("/", (req, res) => {
+//   res.json("Hllow");
+// })
 
 
 
