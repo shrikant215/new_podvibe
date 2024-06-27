@@ -12,7 +12,7 @@ const path = require("path");
 const app = express();
 const uri = process.env.MONGODB_URI;
 
-console.log("ggggggggggggggggggg",process.env) // remove this after you've confirmed it is working
+console.log(__dirname, "hhhhhhhhhhh")
 
 // Middleware
 app.use(cors());
@@ -156,12 +156,12 @@ app.post("/api/signup", async (req, res) => {
 // app.use('/api', app);
 
 // // Serve static files from the React app
-// app.use(express.static(path.join(__dirname, '../podcasts/build')));
+app.use(express.static(path.join(__dirname, '../podcasts/build')));
 
-// // The "catchall" handler: for any request that doesn't match one above, send back React's index.html file.
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../podcasts/build/index.html'));
-// });
+// The "catchall" handler: for any request that doesn't match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../podcasts/build/index.html'));
+});
 
 // app.get("/", (req, res) => {
 //   res.json("Hllow");
