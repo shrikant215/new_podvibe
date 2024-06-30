@@ -4,10 +4,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { PersonRounded } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 
-function Navbar({ setOpenSigniN, isLogin, loginUser, setMenuOpen, menuOpen }) {
+function Navbar({ setOpenSigniN, isLogin, loginUser, setmenuOpen, menuOpen }) {
   
   const menuHanckeClick = () => {
-    setMenuOpen(!menuOpen)
+    setmenuOpen(!menuOpen)
     }
 
 

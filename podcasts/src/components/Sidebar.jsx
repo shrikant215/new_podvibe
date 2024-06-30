@@ -13,24 +13,24 @@ import {
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
-function Sidebar({ menuOpen, setUplodeOpen, isLogin, setIsLogin, setOpenSigniN, setMenuOpen }) {
-  const menuItems = [
-    {
-      link: "/",
-      name: "Dashboard",
-      icon: <HomeRounded />,
-    },
-    {
-      link: "/search",
-      name: "Search",
-      icon: <SearchRounded />,
-    },
-    {
-      link: "/favourites",
-      name: "Favourites",
-      icon: <FavoriteRounded />,
-    },
-  ];
+function Sidebar({ menuOpen, setUplodeOpen, isLogin, setIsLogin, setOpenSigniN, setmenuOpen }) {
+  // const menuItems = [
+  //   {
+  //     link: "/",
+  //     name: "Dashboard",
+  //     icon: <HomeRounded />,
+  //   },
+  //   {
+  //     link: "/search",
+  //     name: "Search",
+  //     icon: <SearchRounded />,
+  //   },
+  //   {
+  //     link: "/favourites",
+  //     name: "Favourites",
+  //     icon: <FavoriteRounded />,
+  //   },
+  // ];
 
   const handleLogout = () => {
     localStorage.clear();
@@ -53,14 +53,15 @@ function Sidebar({ menuOpen, setUplodeOpen, isLogin, setIsLogin, setOpenSigniN, 
   }
 
   return (
-    <div className={styles.menuCotainer} menuOpen={menuOpen}>
+    // <div className={styles.menuCotainer}  menuOpen={menuOpen}>
+    <div className={`${styles.menuContainer} ${menuOpen ? styles.open : ''}`}>
       <div className={styles.flex}>
         <div className={styles.logo}>
           <img className={styles.logoPng} src={LogoImage} alt="Logo" />
           PODVIBE{" "}
         </div>
         <div className={styles.close}>
-          <CloseRounded onClick={() => {setMenuOpen(false)}} />
+          <CloseRounded onClick={() => {setmenuOpen(false)}} />
         </div>
       </div>
 
