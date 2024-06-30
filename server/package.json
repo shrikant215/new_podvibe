@@ -4,9 +4,11 @@
   "description": "Backend for the main podcasts app",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "build": "npm install --prefix ../podcasts && npm run build --prefix ../podcasts && npm install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install-server": "cd server && npm install",
+    "start-server":"cd server && node index.js",
+    "install-podcasts": "cd podcasts && npm run build",
+    "build-podcasts": "cd podcasts && npm run build",
+    "start-podcasts": "cd podcasts && npm run start"
   },
   "keywords": [],
   "author": "",
