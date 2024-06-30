@@ -12,8 +12,6 @@ const path = require("path");
 const app = express();
 const uri = process.env.MONGODB_URI;
 
-console.log(__dirname, "hhhhhhhhhhh")
-
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -150,7 +148,9 @@ app.post("/api/signup", async (req, res) => {
   }
 });
 
-
+app.get("/", (req, res) => {
+  res.status(201).json({message: "Connected to backend"});
+});
 
 // // Use the API router
 // app.use('/api', app);
