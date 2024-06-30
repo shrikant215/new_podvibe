@@ -13,13 +13,13 @@ import { GoogleOAuthProvider } from "@react-oauth/google"; // Import GoogleOAuth
 
 import PodcastDetails from './pages/PodcastDetails';
 import FilterdItems from './components/FilterdItems';
-import { CloseRounded, TaskAltRounded } from '@mui/icons-material';
+// import { CloseRounded, TaskAltRounded } from '@mui/icons-material';
 import ToastMessage from './components/ToastMessage';
 import Audioplayer from './components/Audioplayer';
 
 
 function App() {
-  const [menuopen, setmenuopen] = useState(true);
+  const [menuOpen, setmenuOpen] = useState(true);
   const [uplodeOpen, setUplodeOpen] = useState(false);
   const [openSignUp, setOpenSignUp] = useState(false);
   const [openSigniN, setOpenSigniN] = useState(false);
@@ -45,7 +45,7 @@ function App() {
 
   const fav = (allItems) => {
     setFevItems(allItems)
-    console.log("fav",favitem)
+    // console.log("fav",favitem)
   }
 
 
@@ -78,10 +78,10 @@ function App() {
         {openDialog && details && details.length > 0 && details[0].category === "Audio" && (
     <Audioplayer setDetails={setDetails} details={details} setOpenDialog={setOpenDialog} openDialog={openDialog} handleCloseDialog={handleCloseDialog} />
 )}
-        {menuopen && <Sidebar setmenuopen={setmenuopen}  setUplodeOpen={setUplodeOpen} isLogin={isLogin} setIsLogin={setIsLogin} setOpenSigniN={setOpenSigniN} />} 
+        {menuOpen && <Sidebar setmenuOpen={setmenuOpen}  setUplodeOpen={setUplodeOpen} isLogin={isLogin} setIsLogin={setIsLogin} setOpenSigniN={setOpenSigniN} />} 
 
           <div className="frame">
-            <Navbar setmenuopen={setmenuopen} menuopen={menuopen} setOpenSigniN={setOpenSigniN} isLogin={isLogin} loginUser={loginUser} />
+            <Navbar setmenuOpen={setmenuOpen} menuOpen={menuOpen} setOpenSigniN={setOpenSigniN} isLogin={isLogin} loginUser={loginUser} />
             <Routes>
               <Route path="/" exact element={<Dashboard loginUser={loginUser} fav={fav} />} />
               <Route path="/search" exact element={<Search />} />
