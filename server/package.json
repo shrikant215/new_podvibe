@@ -4,13 +4,11 @@
   "description": "Backend for the main podcasts app",
   "main": "index.js",
   "scripts": {
-    "install": "npm run install-server && npm run install-podcasts",
-    "start": "npm run start-server",
-    "install-server": "cd server && npm install",
-    "start-server": "cd server && node index.js",
-    "install-podcasts": "cd podcasts && npm install",
-    "build-podcasts": "cd podcasts && npm run build",
-    "start-podcasts": "cd podcasts && npm start"
+    "install-server": "cd backend && npm install",
+    "start-server": "cd backend && node app.js",
+    "install-client": "cd podcasts && npm install",
+    "build-client": "cd podcasts && npm run build",
+    "start-client": "cd podcasts && npm run start"
   },
   "keywords": [],
   "author": "",
