@@ -1,6 +1,6 @@
 {
   "name": "server",
-  "version": "1.0.0",
+  "version": ">=18.18.0 <19.0.0",
   "description": "Backend for the main podcasts app",
   "main": "index.js",
   "scripts": {
