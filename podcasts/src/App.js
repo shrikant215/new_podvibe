@@ -19,7 +19,7 @@ import Audioplayer from './components/Audioplayer';
 
 
 function App() {
-  const [menuOpen, setMenuOpen] = useState(true);
+  const [menuopen, setmenuopen] = useState(true);
   const [uplodeOpen, setUplodeOpen] = useState(false);
   const [openSignUp, setOpenSignUp] = useState(false);
   const [openSigniN, setOpenSigniN] = useState(false);
@@ -78,10 +78,10 @@ function App() {
         {openDialog && details && details.length > 0 && details[0].category === "Audio" && (
     <Audioplayer setDetails={setDetails} details={details} setOpenDialog={setOpenDialog} openDialog={openDialog} handleCloseDialog={handleCloseDialog} />
 )}
-        {menuOpen && <Sidebar setMenuOpen={setMenuOpen}  setUplodeOpen={setUplodeOpen} isLogin={isLogin} setIsLogin={setIsLogin} setOpenSigniN={setOpenSigniN} />} 
+        {menuopen && <Sidebar setmenuopen={setmenuopen}  setUplodeOpen={setUplodeOpen} isLogin={isLogin} setIsLogin={setIsLogin} setOpenSigniN={setOpenSigniN} />} 
 
           <div className="frame">
-            <Navbar setMenuOpen={setMenuOpen} menuOpen={menuOpen} setOpenSigniN={setOpenSigniN} isLogin={isLogin} loginUser={loginUser} />
+            <Navbar setmenuopen={setmenuopen} menuopen={menuopen} setOpenSigniN={setOpenSigniN} isLogin={isLogin} loginUser={loginUser} />
             <Routes>
               <Route path="/" exact element={<Dashboard loginUser={loginUser} fav={fav} />} />
               <Route path="/search" exact element={<Search />} />
