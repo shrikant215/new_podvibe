@@ -1,12 +1,12 @@
 {
   "name": "server",
-  "version": "18.18.0",
+  "version": "1.0.0",
   "description": "Backend for the main podcasts app",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "install": "npm run install-server && npm run install-client",
-    "build": "npm run build-client",
-    "start": "npm run start-server && npm run start-client"
+     "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
