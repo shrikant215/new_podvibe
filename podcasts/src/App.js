@@ -10,10 +10,8 @@ import Favourites from './pages/Favourites';
 import Uplode from './components/Uplode';
 import Signin from './components/Signin';
 import { GoogleOAuthProvider } from "@react-oauth/google"; // Import GoogleOAuthProvider
-
 import PodcastDetails from './pages/PodcastDetails';
 import FilterdItems from './components/FilterdItems';
-// import { CloseRounded, TaskAltRounded } from '@mui/icons-material';
 import ToastMessage from './components/ToastMessage';
 import Audioplayer from './components/Audioplayer';
 
@@ -45,7 +43,6 @@ function App() {
 
   const fav = (allItems) => {
     setFevItems(allItems)
-    // console.log("fav",favitem)
   }
 
 
@@ -54,12 +51,9 @@ function App() {
 
   }
 
-
   const handleCloseDialog = () => {
     setOpenDialog(false);
   };
-
-
 
   return (
     <div>
@@ -73,13 +67,12 @@ function App() {
         {uplodeOpen && <div className="backdrop"></div>}
         {uplodeOpen && <Uplode setUplodeOpen={setUplodeOpen} loginUser={loginUser} />}
 
-        {/* details.category === 'Audio' && */}
         <div className="container">
         {openDialog && details && details.length > 0 && details[0].category === "Audio" && (
     <Audioplayer setDetails={setDetails} details={details} setOpenDialog={setOpenDialog} openDialog={openDialog} handleCloseDialog={handleCloseDialog} />
 )}
-        {menuOpen && <Sidebar setmenuOpen={setmenuOpen}  setUplodeOpen={setUplodeOpen} isLogin={isLogin} setIsLogin={setIsLogin} setOpenSigniN={setOpenSigniN} />} 
 
+        {menuOpen && <Sidebar setmenuOpen={setmenuOpen}  setUplodeOpen={setUplodeOpen} isLogin={isLogin} setIsLogin={setIsLogin} setOpenSigniN={setOpenSigniN} />} 
           <div className="frame">
             <Navbar setmenuOpen={setmenuOpen} menuOpen={menuOpen} setOpenSigniN={setOpenSigniN} isLogin={isLogin} loginUser={loginUser} />
             <Routes>
@@ -89,15 +82,11 @@ function App() {
               <Route path="/pddetails/:id" exact element={<PodcastDetails handleOpenaudipalyer={handleOpenaudipalyer} setDetails={setDetails} details={details} setOpenDialog={setOpenDialog} openDialog={openDialog} />} />
               <Route path="/showPodcasts/:value" exact element={<FilterdItems favitem={favitem} />} />
             </Routes>
-
            <ToastMessage snackbarOpen={snackbarOpen} snackbarMessage={snackbarMessage} setSnackbarOpen={setSnackbarOpen} />
-            
           </div>
-          
         </div>
       </BrowserRouter>
       </GoogleOAuthProvider>
-
     </div>
   );
 }

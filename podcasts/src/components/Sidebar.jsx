@@ -14,23 +14,6 @@ import {
 import { Link } from "react-router-dom";
 
 function Sidebar({ menuOpen, setUplodeOpen, isLogin, setIsLogin, setOpenSigniN, setmenuOpen }) {
-  // const menuItems = [
-  //   {
-  //     link: "/",
-  //     name: "Dashboard",
-  //     icon: <HomeRounded />,
-  //   },
-  //   {
-  //     link: "/search",
-  //     name: "Search",
-  //     icon: <SearchRounded />,
-  //   },
-  //   {
-  //     link: "/favourites",
-  //     name: "Favourites",
-  //     icon: <FavoriteRounded />,
-  //   },
-  // ];
 
   const handleLogout = () => {
     localStorage.clear();
@@ -53,7 +36,6 @@ function Sidebar({ menuOpen, setUplodeOpen, isLogin, setIsLogin, setOpenSigniN, 
   }
 
   return (
-    // <div className={styles.menuCotainer}  menuOpen={menuOpen}>
     <div className={`${styles.menuContainer} ${menuOpen ? styles.open : ''}`}>
       <div className={styles.flex}>
         <div className={styles.logo}>
@@ -61,7 +43,7 @@ function Sidebar({ menuOpen, setUplodeOpen, isLogin, setIsLogin, setOpenSigniN, 
           PODVIBE{" "}
         </div>
         <div className={styles.close}>
-          <CloseRounded onClick={() => {setmenuOpen(false)}} />
+          <CloseRounded  className={styles.closeRound} onClick={() => {setmenuOpen(false)}} />
         </div>
       </div>
 

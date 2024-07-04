@@ -1,21 +1,14 @@
 @import '../utils/Themes.css';
 
-.menuCotainer{
+.menuContainer{
     flex: 0.5;
     flex-direction: column;
     height: 100vh;
     display: flex;
     background-color: var(--bg);
     color: var(--text_primary);
-
-    @media (max-width: 1100px){
-        position: fixed;
-        z-index: 1000;
-        width: 100%;
-        max-width: 259px;
-        transition: 0.3s ease-in-out;
-    }
 }
+
 
 .logo{
     color: var(--primary);
@@ -32,8 +25,14 @@
     display: none;
      @media (max-width: 1100px){
         display: block;
+        font-size: 30px;
+        font-weight: 800;
      }
-
+}
+.closeRound{
+        display: block;
+        font-weight: 500;
+     margin-right: 10px;
 }
 .elements{
     padding: 4px 16px;
@@ -70,3 +69,17 @@ hr{
     margin: 10px 0px;
     
 }
+
+
+@media (max-width: 1100px) {
+
+    .menuContainer {
+        background-color: var(--bg);
+        color: var(--text_primary);
+        position: fixed;
+        z-index: 1000;
+        width: 100%;
+        max-width: 250px;
+        transition: left 0.3s ease-in-out;
+    }
+  }
