@@ -18,11 +18,11 @@ Admin users can access the admin panel to create and add new podcasts, which wil
 Technologies Used
 The application is built using the following technologies:
 
-React Js
-Node Js
-Mongo Db
-Google Auth
-Firebase
+React Js,
+Node Js,
+Mongo Db,
+Google Auth,
+Firebase,
 
 
 ![Screenshot 2024-07-04 115959](https://github.com/shrikant215/new_podvibe/assets/128452488/e161650e-3431-4408-9a83-18e0ffb24453)
