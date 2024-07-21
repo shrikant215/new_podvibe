@@ -52,14 +52,19 @@ function Favourites() {
            <CircularProgress style={{ position:'relative',top:'50%',left:'50%'}} />
        ):(
       <div className={styles.favContainer}>
-        {favoriteItems.map((item) => (
-          <Podcastcard
-            key={item.id}
-            item={item}
-            favorites={favorites}
-            setFavorites={setFavorites}
-          />
-        ))}
+        {favoriteItems.length > 0 ? (
+ favoriteItems.map((item) => (
+  <Podcastcard
+    key={item.id}
+    item={item}
+    favorites={favorites}
+    setFavorites={setFavorites}
+  />
+))
+        ) : (
+          <p className={styles.pStyle}>No data found</p>
+        )
+       }
       </div>
        )}
     </div>

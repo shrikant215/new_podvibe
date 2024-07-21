@@ -5,6 +5,8 @@ import { IconButton, Modal } from "@mui/material";
 import validator from 'validator'; // Import the validator library
 import { Dialog, DialogTitle, DialogContent, TextField } from "@mui/material";
 import { useGoogleLogin } from "@react-oauth/google";
+
+
 import {
   PersonRounded,
   MailRounded,
@@ -14,8 +16,7 @@ import {
 import axios from "axios";
 const apiUrl = process.env.REACT_APP_API_URL;
 
-
-function Signup({ setOpenSignUp, setOpenSigniN }) {
+function Signup({ setOpenSignUp, setOpenSigniN, setIsLogin, loginDetails, setSnackbarOpen , setSnackbarMessage }) {
   const [nameCorrect, setNameCorrect] = useState(false);
   const [passwordCorrect, setPasswordCorrect] = useState(false);
   const [credentialErr, setcredentialErr] = useState("");
@@ -27,6 +28,7 @@ function Signup({ setOpenSignUp, setOpenSigniN }) {
     password: "",
     otp: "",
   });
+
 
 
   const handleInputChange = (event) => {
@@ -47,7 +49,6 @@ function Signup({ setOpenSignUp, setOpenSigniN }) {
   };
 
   const handleSubmit = async (event) => {
-    // Added event parameter
     event.preventDefault(); // Prevent form submission
     try {
       const response = await axios.post(
@@ -140,6 +141,13 @@ function Signup({ setOpenSignUp, setOpenSigniN }) {
       }
     }
 
+    const loginWithGoogle =() => {
+      window.open("http://localhost:4000/auth/google/callback", "_self")
+    }
+
+    
+
+
 
 
   return (
@@ -154,8 +162,9 @@ function Signup({ setOpenSignUp, setOpenSigniN }) {
           </DialogTitle>
           <DialogContent>
             <form onSubmit={handleSubmit}>
-              <div className={styles.SignupGoogle} >
+              <div className={styles.SignupGoogle} onClick={loginWithGoogle}>
                 <Google />
+
                 Sign in with Google
               </div>
 

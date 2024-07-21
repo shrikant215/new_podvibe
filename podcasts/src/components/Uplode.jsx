@@ -315,6 +315,9 @@ function Upload({ setUplodeOpen, loginUser }) {
                       placeholder="select type"
                     >
                       <option value="education">education</option>
+                      <option value="horror">horror</option>
+                      <option value="emotional">emotional</option>
+                      <option value="movie">movie</option>
                       <option value="health">health</option>
                       <option value="comedy">comedy</option>
                       <option value="science">science</option>

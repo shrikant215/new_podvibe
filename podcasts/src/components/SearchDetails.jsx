@@ -15,10 +15,12 @@ function SearchDetails({ searchResults }) {
   return (
     <>
       {loading ? (
-        <CircularProgress style={{ position:'relative',top:'50%',left:'50%'}} />
+        <div className={styles.loaderContainer}>
+          <CircularProgress />
+        </div>
       ) : (
-        <>
-          {searchResults.map((data) => (
+        searchResults.length > 0 ? (
+          searchResults.map((data) => (
             <Link to={`/pddetails/${data.id}`} className={styles.searchDetailCard} key={data.id}>
               <div className={styles.searchContains}>
                 <div className={styles.searchDContainer}>
@@ -27,7 +29,6 @@ function SearchDetails({ searchResults }) {
                     src={data.thumbnailURL} 
                     alt="Podcast Thumbnail"
                   />
-
                   <div className={styles.searchDNameContainer}>
                     <div className={styles.searchDlabel}>
                       {data.episodes && data.episodes.length > 0 ? data.episodes[0].episodeName : "Unknown Episode"}
@@ -39,8 +40,10 @@ function SearchDetails({ searchResults }) {
                 </div>
               </div>
             </Link>
-          ))}
-        </>
+          ))
+        ) : (
+          <div className={styles.noData}>No data found</div>
+        )
       )}
     </>
   );

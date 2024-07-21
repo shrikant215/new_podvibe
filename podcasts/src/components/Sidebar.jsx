@@ -16,6 +16,8 @@ import { Link } from "react-router-dom";
 function Sidebar({ menuOpen, setUplodeOpen, isLogin, setIsLogin, setOpenSigniN, setmenuOpen }) {
 
   const handleLogout = () => {
+    window.open("http://localhost:4000/logout","_self")
+    
     localStorage.clear();
     setIsLogin(false);
     console.log("Logged out successfully");
@@ -34,6 +36,8 @@ function Sidebar({ menuOpen, setUplodeOpen, isLogin, setIsLogin, setOpenSigniN, 
       setOpenSigniN(true)
     }
   }
+
+
 
   return (
     <div className={`${styles.menuContainer} ${menuOpen ? styles.open : ''}`}>

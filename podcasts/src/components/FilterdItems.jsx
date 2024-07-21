@@ -57,11 +57,15 @@ function FilterdItems() {
            <CircularProgress style={{ position:'relative',top:'50%',left:'50%'}} />
        ):(
       <div className={styles.filterdCard} style={{display:'flex', gap:'20'}}>
-        {filteredData.map((item, index) => (
+      {filteredData.length > 0 ? (
+        filteredData.map((item, index) => (
           <div >
             <Podcastcard key={index} item={item} />
           </div>
-        ))}
+        ))
+      ) : (
+          <div className={styles.noDatas}>No data found</div>
+        )}
       </div>
        )}
     </div>

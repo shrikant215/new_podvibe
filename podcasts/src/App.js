@@ -60,7 +60,7 @@ function App() {
           <GoogleOAuthProvider>
 
       <BrowserRouter>
-        {openSignUp && <Signup setOpenSignUp={setOpenSignUp} setOpenSigniN={setOpenSigniN} />}
+        {openSignUp && <Signup setOpenSignUp={setOpenSignUp} setOpenSigniN={setOpenSigniN} setIsLogin={setIsLogin} loginDetails={loginDetails} setSnackbarOpen={setSnackbarOpen} setSnackbarMessage={setSnackbarMessage} />}
         {openSigniN && (
           <Signin setOpenSigniN={setOpenSigniN} setOpenSignUp={setOpenSignUp} setIsLogin={setIsLogin} loginDetails={loginDetails} setSnackbarOpen={setSnackbarOpen} setSnackbarMessage={setSnackbarMessage} />
         )}
@@ -74,7 +74,7 @@ function App() {
 
         {menuOpen && <Sidebar setmenuOpen={setmenuOpen}  setUplodeOpen={setUplodeOpen} isLogin={isLogin} setIsLogin={setIsLogin} setOpenSigniN={setOpenSigniN} />} 
           <div className="frame">
-            <Navbar setmenuOpen={setmenuOpen} menuOpen={menuOpen} setOpenSigniN={setOpenSigniN} isLogin={isLogin} loginUser={loginUser} />
+            <Navbar setSnackbarMessage={setSnackbarMessage} setSnackbarOpen={setSnackbarOpen} setmenuOpen={setmenuOpen} menuOpen={menuOpen} setOpenSigniN={setOpenSigniN} isLogin={isLogin} loginUser={loginUser} setIsLogin={setIsLogin} />
             <Routes>
               <Route path="/" exact element={<Dashboard loginUser={loginUser} fav={fav} />} />
               <Route path="/search" exact element={<Search />} />

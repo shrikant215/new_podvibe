@@ -239,3 +239,15 @@
 .searchDetailCard{
     text-decoration: none;
 }
+.noData{
+    color: white;
+    margin-top: 50%;
+}
+
+.noDatas{
+    color: white;
+    margin-top: 10rem;
+    align-items: center;
+    justify-content: center;
+    margin-left: 40%;
+}

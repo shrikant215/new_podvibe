@@ -36,6 +36,7 @@ function Signin({ setOpenSigniN, setOpenSignUp, setIsLogin, loginDetails, setSna
     event.preventDefault();
     try{
       const response = await axios.post(`${apiUrl}/api/login`,formData)
+      
       localStorage.setItem("userId", response.data.userId);
       localStorage.setItem("userName", response.data.name); 
       loginDetails(response.data.name)
@@ -44,6 +45,10 @@ function Signin({ setOpenSigniN, setOpenSignUp, setIsLogin, loginDetails, setSna
       setSnackbarOpen(true);
       setSnackbarMessage(response.data.message)
       setOpenSigniN(false);
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
+      }
+      return response.data;
     }catch(err){
       console.log(err)
       setSnackbarOpen(true);
@@ -123,6 +128,11 @@ function Signin({ setOpenSigniN, setOpenSignUp, setIsLogin, loginDetails, setSna
     setSnackbarOpen(false);
   };
 
+  const loginWithGoogle =async() => {
+    window.open("http://localhost:4000/auth/google/callback", "_self")
+   
+  }
+
   return (
     <div>
     <Modal className={styles.model} open={true} onClose={handleClose}>
@@ -136,7 +146,7 @@ function Signin({ setOpenSigniN, setOpenSignUp, setIsLogin, loginDetails, setSna
           </DialogTitle>
           <DialogContent>
             <form onSubmit={handleSubmit}>
-              <div className={styles.SignupGoogle}>
+              <div className={styles.SignupGoogle} onClick={loginWithGoogle}>
                 <Google />
                 Sign in with Google
               </div>
