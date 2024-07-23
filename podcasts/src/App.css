@@ -2,20 +2,13 @@
 
 .container{
   display: flex;
-<<<<<<< HEAD
   flex-direction: row;
-=======
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
   background-color: var(--bgLight);
   width: 100%;
   height: 100vh;
   overflow-y: hidden;
   overflow-x: hidden;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
 .frame{
   display: flex;
   flex-direction: column;

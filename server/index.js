@@ -1,5 +1,4 @@
 // Import necessary modules
-<<<<<<< HEAD
 import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
@@ -133,28 +132,6 @@ app.use((err, req, res, next) => {
   res.status(500).send('Internal Server Error');
 });
 
-=======
-require('dotenv').config();
-const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const nodemailer = require("nodemailer");
-const randomstring = require("randomstring");
-const admin = require('firebase-admin'); 
-const multer = require("multer");
-const path = require("path");
-const app = express();
-const uri = process.env.MONGODB_URI;
-
-// Middleware
-app.use(cors());
-app.use(express.json());
-app.use(bodyParser.json());
-
-app.use("/uploads", express.static("uploads"));
-
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
 // Connect to MongoDB
 mongoose
   .connect(uri, {
@@ -164,7 +141,6 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Error connecting to MongoDB:", err));
 
-<<<<<<< HEAD
 // Login endpoint
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
@@ -182,61 +158,18 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-=======
-
-const user = mongoose.Schema(
-  {
-    name: String,
-    email: String,
-    password: String,
-  },
-  { timestamps: true }
-);
-const User = mongoose.model("User", user);
-
-
-
-
-app.post('/api/login', async(req, res)=> {
-  const{ email,password} = req.body;
-  try{
-      const user = await User.findOne({email, password});
-      if(user){
-
-          res.status(200).json({message: 'Login Successful', userId: user._id, name: user.name })
-          console.log(user._id,user.name)
-      }else{
-          res.status(401).json({message: 'Invalid credentials'})
-      }
-  }catch(err){
-      res.status(500).json({message: err.message})
-  }
-});
-
-
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
 // Nodemailer transporter configuration
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-<<<<<<< HEAD
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
-=======
-    user: "shrikantjk3@gmail.com",
-    pass: "zipi auil dxzo vwva",
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
   },
 });
 
 // Simulated in-memory database for storing OTPs
 const otpMap = {};
 
-<<<<<<< HEAD
-=======
-// const apiRouter = express.Router();
-
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
 // Route to send OTP for signup
 app.post("/api/sendSignupOTP", async (req, res) => {
   const { email } = req.body;
@@ -246,7 +179,6 @@ app.post("/api/sendSignupOTP", async (req, res) => {
     return res.status(400).json({ message: "Email already registered." });
   }
 
-<<<<<<< HEAD
   // Generate OTP
   const otp = randomstring.generate({
     length: 6,
@@ -254,15 +186,6 @@ app.post("/api/sendSignupOTP", async (req, res) => {
   });
 
   // Save OTP to the in-memory database
-=======
-    // Generate OTP
-    const otp = randomstring.generate({
-      length: 6,
-      charset: "numeric",
-    });
-
-      // Save OTP to the in-memory database
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
   otpMap[email] = otp;
 
   // Email message configuration
@@ -273,7 +196,6 @@ app.post("/api/sendSignupOTP", async (req, res) => {
     text: `Your OTP for signup is: ${otp}`,
   };
 
-<<<<<<< HEAD
   // Send email
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
@@ -288,22 +210,6 @@ app.post("/api/sendSignupOTP", async (req, res) => {
 
 // Route to verify OTP for signup
 app.post("/api/verifySignupOTP", async (req, res) => {
-=======
-    // Send email
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.log(error);
-        res.status(500).json({ message: "Failed to send OTP.",error });
-      } else {
-        console.log("Email sent: " + info.response);
-        res.status(200).json({ message: "OTP sent successfully." });
-      }
-    });
-  });
-
-  // Route to verify OTP for signup
-  app.post("/api/verifySignupOTP", async (req, res) => {
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
   const { email, otp } = req.body;
 
   // Verify OTP
@@ -314,10 +220,6 @@ app.post("/api/verifySignupOTP", async (req, res) => {
   res.status(200).json({ message: "OTP verification successful." });
 });
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
 // Sign-up endpoint
 app.post("/api/signup", async (req, res) => {
   const { name, email, password, otp } = req.body;
@@ -334,22 +236,16 @@ app.post("/api/signup", async (req, res) => {
     } else {
       const newUser = new User({ name, email, password });
       await newUser.save();
-<<<<<<< HEAD
 
       const token = generateToken(newUser);
       res.status(201).json({ message: "Sign-up successful", token });
       console.log("newUser", newUser);
-=======
-      res.status(201).json({ message: "Sign-up successful" });
-      console.log(newUser);
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-<<<<<<< HEAD
 
 
 // Resolve __dirname and __filename for ES modules
@@ -357,16 +253,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Serve static files from the React app
-=======
-app.get("/", (req, res) => {
-  res.status(201).json({message: "Connected to backend"});
-});
-
-// // Use the API router
-// app.use('/api', app);
-
-// // Serve static files from the React app
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
 app.use(express.static(path.join(__dirname, '../podcasts/build')));
 
 // The "catchall" handler: for any request that doesn't match one above, send back React's index.html file.
@@ -374,23 +260,10 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../podcasts/build/index.html'));
 });
 
-<<<<<<< HEAD
-=======
-// app.get("/", (req, res) => {
-//   res.json("Hllow");
-// })
-
-
-
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
 // Define port
 const PORT = process.env.PORT || 5000;
 
 // Start the server
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
 
-<<<<<<< HEAD
 export default app;
-=======
-module.exports = app;
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d

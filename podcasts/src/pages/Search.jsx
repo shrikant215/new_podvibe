@@ -139,20 +139,13 @@ function Search() {
       <div className={styles.SearchMain}>
 
       {searchQuery && (
-<<<<<<< HEAD
             searchResults && searchResults.length > 0 ? (
-=======
-            searchResults && searchResults.length > 0 && (
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
               console.log("searchResultssearchResults",searchResults),
               <div className={styles.SearchDetails}>
                 <SearchDetails searchResults={searchResults}  />
               </div>
-<<<<<<< HEAD
             ) : (
               <div className={styles.noData}>No data found</div>
-=======
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
             )
       )}  
 

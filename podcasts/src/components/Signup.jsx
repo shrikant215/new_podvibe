@@ -5,11 +5,8 @@ import { IconButton, Modal } from "@mui/material";
 import validator from 'validator'; // Import the validator library
 import { Dialog, DialogTitle, DialogContent, TextField } from "@mui/material";
 import { useGoogleLogin } from "@react-oauth/google";
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
 import {
   PersonRounded,
   MailRounded,
@@ -19,12 +16,7 @@ import {
 import axios from "axios";
 const apiUrl = process.env.REACT_APP_API_URL;
 
-<<<<<<< HEAD
 function Signup({ setOpenSignUp, setOpenSigniN, setIsLogin, loginDetails, setSnackbarOpen , setSnackbarMessage }) {
-=======
-
-function Signup({ setOpenSignUp, setOpenSigniN }) {
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
   const [nameCorrect, setNameCorrect] = useState(false);
   const [passwordCorrect, setPasswordCorrect] = useState(false);
   const [credentialErr, setcredentialErr] = useState("");
@@ -38,10 +30,6 @@ function Signup({ setOpenSignUp, setOpenSigniN }) {
   });
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
@@ -60,10 +48,6 @@ function Signup({ setOpenSignUp, setOpenSigniN }) {
   };
 
   const handleSubmit = async (event) => {
-<<<<<<< HEAD
-=======
-    // Added event parameter
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
     event.preventDefault(); // Prevent form submission
     try {
       const response = await axios.post(
@@ -156,7 +140,6 @@ function Signup({ setOpenSignUp, setOpenSigniN }) {
       }
     }
 
-<<<<<<< HEAD
     const loginWithGoogle =() => {
       window.open("http://localhost:4000/auth/google/callback", "_self")
     }
@@ -164,18 +147,12 @@ function Signup({ setOpenSignUp, setOpenSigniN }) {
     
 
 
-=======
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
 
 
   return (
     <Modal className={styles.model} open={true} onClose={handleClose}>
       <div className={styles.uplodewindo}>
-<<<<<<< HEAD
         <div className={styles.customDialogs}>
-=======
-        <div className={styles.customDialog}>
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
           <DialogTitle disableTypography className={styles.titleAndClose}>
             <div className={styles.uplodetitle}>SignUp</div>
             <div className={styles.closeIcon} onClick={handleClose}>
@@ -184,14 +161,9 @@ function Signup({ setOpenSignUp, setOpenSigniN }) {
           </DialogTitle>
           <DialogContent>
             <form onSubmit={handleSubmit}>
-<<<<<<< HEAD
               <div className={styles.SignupGoogle} onClick={loginWithGoogle}>
                 <Google />
 
-=======
-              <div className={styles.SignupGoogle} >
-                <Google />
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
                 Sign in with Google
               </div>
 

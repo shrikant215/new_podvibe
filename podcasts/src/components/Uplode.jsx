@@ -207,15 +207,9 @@ function Upload({ setUplodeOpen, loginUser }) {
                 <div style={{ marginBottom: "10px" }}>
                   <div
                     style={{
-<<<<<<< HEAD
                       fontSize: "14px",
                       fontWeight: "500",
                       color: "white"
-=======
-                      marginBottom: "10px",
-                      fontSize: "14px",
-                      fontWeight: "500",
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
                     }}
                   >
                     Podcast Details:
@@ -298,23 +292,14 @@ function Upload({ setUplodeOpen, loginUser }) {
                 >
                   <div
                     className={styles.optionsContainer}
-<<<<<<< HEAD
-=======
-                    style={{ marginBottom: "10px" }}
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
                   >
                     <select
                       className={styles.optionsInput}
                       value={selectedOption1}
                       onChange={handleOption1Change}
                     >
-<<<<<<< HEAD
                       <option className={styles.options} value="Audio">Audio</option>
                       <option className={styles.options} value="Video">Video</option>
-=======
-                      <option value="Audio">Audio</option>
-                      <option value="Video">Video</option>
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
                     </select>
                   </div>
 
@@ -329,12 +314,9 @@ function Upload({ setUplodeOpen, loginUser }) {
                       placeholder="select type"
                     >
                       <option value="education">education</option>
-<<<<<<< HEAD
                       <option value="horror">horror</option>
                       <option value="emotional">emotional</option>
                       <option value="movie">movie</option>
-=======
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
                       <option value="health">health</option>
                       <option value="comedy">comedy</option>
                       <option value="science">science</option>

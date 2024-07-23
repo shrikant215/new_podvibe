@@ -51,10 +51,6 @@ function PodcastDetails({
   return (
     <div className={styles.pdContainer}>
       <div className={styles.pdPodDetails}>
-<<<<<<< HEAD
-=======
-        {/* Check if details is not null and if selectedThumbnailFile exists */}
->>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
         {details && details.length > 0 && (
           <div>
             <div className={styles.pdBox} key={details[0].id}>
