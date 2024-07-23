@@ -207,9 +207,9 @@ function Upload({ setUplodeOpen, loginUser }) {
                 <div style={{ marginBottom: "10px" }}>
                   <div
                     style={{
-                      marginBottom: "10px",
                       fontSize: "14px",
                       fontWeight: "500",
+                      color: "white"
                     }}
                   >
                     Podcast Details:
@@ -292,15 +292,14 @@ function Upload({ setUplodeOpen, loginUser }) {
                 >
                   <div
                     className={styles.optionsContainer}
-                    style={{ marginBottom: "10px" }}
                   >
                     <select
                       className={styles.optionsInput}
                       value={selectedOption1}
                       onChange={handleOption1Change}
                     >
-                      <option value="Audio">Audio</option>
-                      <option value="Video">Video</option>
+                      <option className={styles.options} value="Audio">Audio</option>
+                      <option className={styles.options} value="Video">Video</option>
                     </select>
                   </div>
 

@@ -137,7 +137,7 @@ function Signin({ setOpenSigniN, setOpenSignUp, setIsLogin, loginDetails, setSna
     <div>
     <Modal className={styles.model} open={true} onClose={handleClose}>
       <div className={styles.uplodewindo}>
-        <div className={styles.customDialog}>
+        <div className={styles.customDialogs}>
           <DialogTitle disableTypography className={styles.titleAndClose}>
             <div className={styles.uplodetitle}>Signin</div>
             <div className={styles.closeIcon} onClick={handleClose}>
