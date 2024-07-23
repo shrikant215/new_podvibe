@@ -238,6 +238,7 @@
 }
 .searchDetailCard{
     text-decoration: none;
+<<<<<<< HEAD
 }
 .noData{
     color: white;
@@ -250,4 +251,6 @@
     align-items: center;
     justify-content: center;
     margin-left: 40%;
+=======
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
 }

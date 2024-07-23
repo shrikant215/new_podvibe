@@ -9,8 +9,13 @@ const Card=styled.div`
     padding:1rem;
     border-radius:0.6rem;
     @media (max-width: 600px) {
+<<<<<<< HEAD
       height: 150px;
       width: 250px;
+=======
+      height: 100px;
+      width: 100px;
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
     }
 `
 const PodcastName=styled.div`

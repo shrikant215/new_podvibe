@@ -35,6 +35,7 @@
 
 /* uplode */
 .customDialog{
+<<<<<<< HEAD
     /* background-color: #191919;
     padding: 30px;
     color: white;
@@ -69,6 +70,16 @@ position: relative;
 
 .UploadContainer{
     /* background-color: #0f0f0f;
+=======
+    background-color: #191919;
+    padding: 30px;
+    color: white;
+    border-radius: 10px;
+}
+
+.UploadContainer{
+    background-color: #0f0f0f;
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
     position: relative;
     height: 5rem;
     width: 26rem;
@@ -79,6 +90,7 @@ position: relative;
     align-items: center;
     justify-content: center;
     padding: 20px 0;
+<<<<<<< HEAD
     overflow: hidden; */
     height: 120px;
     display: flex;
@@ -90,17 +102,23 @@ position: relative;
     border-radius: 12px;
     color: white;
     margin: 30px 20px 0px 20px;
+=======
+    overflow: hidden;
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
 }
 .title{
     font-weight: 500;
 }
 .closeIcon{
     cursor: pointer;
+<<<<<<< HEAD
     position: absolute;
     top: 24px;
     right: 30px;
     cursor: pointer;
     color: inherit;
+=======
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
 }
 .Uplodefile{
     /* height: 100%;
@@ -115,6 +133,7 @@ position: relative;
 }
 
 .uplodewindo{
+<<<<<<< HEAD
     /* display: flex;
     align-items: center;
     justify-self: center;
@@ -130,6 +149,14 @@ display: flex;
 align-items: top;
 justify-content: center;
 overflow-y: scroll;
+=======
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
 }
 
 .titleAndClose{
@@ -137,7 +164,10 @@ overflow-y: scroll;
     justify-content: space-between;
     align-items: center;
     padding-bottom: 30px;
+<<<<<<< HEAD
     color: white;
+=======
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
 
 }
 .uplodefiletitle{
@@ -168,7 +198,11 @@ overflow-y: scroll;
 }
 
 .uplodeName{
+<<<<<<< HEAD
     margin: 0px 20px 0px 20px;
+=======
+    width: 100%;
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
     background-color: transparent;
     height: 50px;
     align-items: center;
@@ -179,6 +213,10 @@ overflow-y: scroll;
     
 }
 .NameInput{
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
     width: 90%;
     background: transparent;
     font-weight: 500;
@@ -188,7 +226,11 @@ overflow-y: scroll;
     color: white;
 }
 .uplodeDisc{
+<<<<<<< HEAD
     margin: 0px 20px 0px 20px;
+=======
+    width: 100%;
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
     background-color: transparent;
     height: 6rem;
     align-items: center;
@@ -208,7 +250,11 @@ overflow-y: scroll;
     border-radius: 10px;
 }
 .uplodeTag{
+<<<<<<< HEAD
     margin: 0px 20px 0px 20px;
+=======
+    width: 100%;
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
     background-color: transparent;
     height: 4rem;
     align-items: center;
@@ -229,9 +275,15 @@ overflow-y: scroll;
 .optionsContainer{
     background-color: transparent;
     overflow: hidden;
+<<<<<<< HEAD
     margin: 0 20px;
     width: 100%;
     padding: 0 10px;
+=======
+
+    /* padding: 15px 58px; */
+    width: 48%;
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
     height: 3rem;
     gap: 10px;
     border-radius: 10px;
@@ -241,12 +293,17 @@ overflow-y: scroll;
     display: flex;
 }
 .optionsInput{
+<<<<<<< HEAD
     /* height: 30px;
+=======
+    height: 30px;
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
     width: 80%;
     color: white;
     background-color: transparent;
     border: none;
     outline: none;
+<<<<<<< HEAD
     overflow: hidden; */
     width: 100%;
     border: none;
@@ -255,14 +312,21 @@ overflow-y: scroll;
     background-color: transparent;
     outline: none;
     color: white;
+=======
+    overflow: hidden;
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
 
 }
 .button{
     /* position: relative; */
     background-color: transparent;
     height: 3rem;
+<<<<<<< HEAD
     padding: 0px 0px 0px 0px;
     /* width: 100%; */
+=======
+    width: 100%;
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
     /* overflow: hidden; */
     border-radius: 10px;
     align-items: center;
@@ -288,6 +352,7 @@ overflow-y: scroll;
     justify-content: center;
     gap: 20px;
 }
+<<<<<<< HEAD
 .options{
     width: 100%;
     border: none;
@@ -297,11 +362,16 @@ overflow-y: scroll;
     outline: none;
     color: black;
 }
+=======
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
 
 /* signUp form  */
 .SignupGoogle{
     background-color: transparent;
+<<<<<<< HEAD
     color: white;
+=======
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
     height: 45px;
     width: 20rem;
     border-radius: 10px;
@@ -333,7 +403,10 @@ overflow-y: scroll;
 }
 
 .SignupName{
+<<<<<<< HEAD
     color: white;
+=======
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
     background-color: transparent;
     height: 45px;
     width: 20rem;
@@ -355,12 +428,21 @@ overflow-y: scroll;
 }
 .switchFormContainer{
     display: flex;
+<<<<<<< HEAD
     margin-top: 20px;
     gap: 5px;
     align-items: center;
     color: white;
     /* justify-content: center; */
     /* display: flex; */
+=======
+    /* margin: 2px; */
+    margin-top: 20px;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
 }
 .switchFormText{
     color:#be1adb ;
@@ -382,7 +464,10 @@ option{
     cursor: pointer;
 }
 .SignlogoInput{
+<<<<<<< HEAD
     color: white;
+=======
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
     display: flex;
     justify-content: flex-start;
     align-items: center;

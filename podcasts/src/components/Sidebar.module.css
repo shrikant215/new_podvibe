@@ -1,14 +1,30 @@
 @import '../utils/Themes.css';
 
+<<<<<<< HEAD
 .menuContainer{
+=======
+.menuCotainer{
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
     flex: 0.5;
     flex-direction: column;
     height: 100vh;
     display: flex;
     background-color: var(--bg);
     color: var(--text_primary);
+<<<<<<< HEAD
 }
 
+=======
+
+    @media (max-width: 1100px){
+        position: fixed;
+        z-index: 1000;
+        width: 100%;
+        max-width: 259px;
+        transition: 0.3s ease-in-out;
+    }
+}
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
 
 .logo{
     color: var(--primary);
@@ -25,6 +41,7 @@
     display: none;
      @media (max-width: 1100px){
         display: block;
+<<<<<<< HEAD
         font-size: 30px;
         font-weight: 800;
      }
@@ -33,6 +50,10 @@
         display: block;
         font-weight: 500;
      margin-right: 10px;
+=======
+     }
+
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
 }
 .elements{
     padding: 4px 16px;
@@ -68,6 +89,7 @@ hr{
     background-color: var(--text_secondary);
     margin: 10px 0px;
     
+<<<<<<< HEAD
 }
 
 
@@ -83,3 +105,6 @@ hr{
         transition: left 0.3s ease-in-out;
     }
   }
+=======
+}
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d

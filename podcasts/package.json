@@ -1,5 +1,10 @@
 {
+<<<<<<< HEAD
   "name": "client",
+=======
+  "homepage": "https://github.com/shrikant215/main-podcasts-app.git  ",
+  "name": "podcasts",
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,11 +22,17 @@
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.8",
+<<<<<<< HEAD
     "connect-mongo": "^5.1.0",
     "dotenv": "^16.4.5",
     "emailjs": "^4.0.2",
     "firebase": "^10.10.0",
     "gapi-script": "^1.2.0",
+=======
+    "dotenv": "^16.4.5",
+    "emailjs": "^4.0.2",
+    "firebase": "^10.10.0",
+>>>>>>> 178213a7739d2e6de6b1ffee80a5a6eede47362d
     "multer": "^1.4.5-lts.1",
     "path": "^0.12.7",
     "react": "^18.0.0",
