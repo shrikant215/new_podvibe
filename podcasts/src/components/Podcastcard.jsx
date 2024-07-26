@@ -41,6 +41,7 @@ function Podcastcard({ item, favorites, setFavorites }) {
   };
 
   const avatarColor = getRandomColor();
+
   return (
     <div className={styles.podContainer}>
       <Link to={`/pddetails/${item.id}`} className={styles.card}>
@@ -52,7 +53,7 @@ function Podcastcard({ item, favorites, setFavorites }) {
               width: "16px",
               height: "16px",
               color: isFavorite ? "red" : "inherit",
-              fill: isFavorite ? "red" : "currentColor", 
+              fill: isFavorite ? "red" : "currentColor",
             }}
             onClick={(event) => toggleFavorite(event)}
           />
@@ -70,7 +71,7 @@ function Podcastcard({ item, favorites, setFavorites }) {
 
             <div className={styles.creatorInfo}>
               <div className={styles.creater}>
-                {item.uploderId && (
+                {typeof item.uploderId === "string" ? (
                   <Avatar
                     style={{
                       width: "26px",
@@ -80,8 +81,23 @@ function Podcastcard({ item, favorites, setFavorites }) {
                   >
                     {item.uploderId.charAt(0).toUpperCase()}
                   </Avatar>
+                ) : (
+                  <Avatar
+                    style={{
+                      width: "26px",
+                      height: "26px",
+                      backgroundColor: avatarColor,
+                    }}
+                    src={item.uploderId.image}
+                  >
+                    {item.uploderId.displayName.charAt(0).toUpperCase()}
+                  </Avatar>
                 )}
-                <div className={styles.creatorName}>{item.uploderId}</div>
+                <div className={styles.creatorName}>
+                  {typeof item.uploderId === "string"
+                    ? item.uploderId
+                    : item.uploderId.displayName}
+                </div>
               </div>
               {/* <div className={styles.view}> 12 Views</div> */}
             </div>
@@ -92,4 +108,5 @@ function Podcastcard({ item, favorites, setFavorites }) {
   );
 }
 
-export default Podcastcard
+export default Podcastcard;
+  

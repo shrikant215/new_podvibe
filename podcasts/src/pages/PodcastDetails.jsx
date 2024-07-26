@@ -17,6 +17,7 @@ function PodcastDetails({
   openDialog,
   setOpenDialog,
   handleOpenaudipalyer,
+  userData
 }) {
   const { id } = useParams();
 
@@ -66,11 +67,15 @@ function PodcastDetails({
                 <div className={styles.pdFooter}>
                   <div className={styles.pdTags}>{details[0].tags}</div>
                   <div style={{ display: "flex" }}>
-                    <Avatar style={{ width: "26px", height: "26px" }}>{details[0].uploderId.charAt(0).toUpperCase()}</Avatar>
-                    <div style={{ marginLeft: "5px", color: "white" }}>
-                      {" "}
-                      {details[0].uploderId}
-                    </div>
+                  <Avatar
+                    style={{ width: "26px", height: "26px" }}
+                    src={details[0].uploderId.image}
+                  >
+                    {typeof details[0].uploderId === "object" && details[0].uploderId.displayName 
+                      ? details[0].uploderId.displayName.charAt(0).toUpperCase() 
+                      : "U"} {/* Default fallback character */}
+                  </Avatar>  
+                  <div className={styles.creatorName}>{details[0].uploderId.displayName}</div>
                     <div
                       style={{
                         display: "flex",

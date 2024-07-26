@@ -110,6 +110,7 @@ app.get('/auth/google/callback',
 
 
 app.get("/sigin/sucess", async(req, res) => {
+  console.log("hhhhhhhhhhhhh",req.user)
   if (req.user) {
     res.status(200).json({ message: "Login successful", user: req.user });
   } else {

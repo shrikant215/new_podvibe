@@ -4,13 +4,12 @@ import { CloseRounded, CloudUploadRounded } from "@mui/icons-material";
 import { DialogTitle, DialogContent, Modal } from "@mui/material";
 import { CircularProgress } from "@mui/material";
 
-import { initializeApp } from "firebase/app"; // Import initializeApp from 'firebase/app'
-import "firebase/storage"; // Import storage module separately
+import { initializeApp } from "firebase/app";
+import "firebase/storage";
 
 import firebaseConfig from "./firebaseConfig";
-// Update import statements for Firestore functions
-import { collection, addDoc } from "firebase/firestore"; // Assuming Firestore is imported from '@firebase/firestore' in firebaseConfig
-import { db } from "./firebaseConfig"; // Assuming `db` is exported from your firebaseConfig file
+import { collection, addDoc } from "firebase/firestore"; 
+import { db } from "./firebaseConfig"; 
 import {
   getStorage,
   ref,
@@ -20,7 +19,7 @@ import {
 
 initializeApp(firebaseConfig);
 
-function Upload({ setUplodeOpen, loginUser }) {
+function Upload({ setUplodeOpen, loginUser, userData }) {
   const [selectedTumbnailFile, setSelectedTumbnailFile] = useState(null);
   const [selectedVideoFile, setSelectedVideoFile] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
@@ -38,7 +37,7 @@ function Upload({ setUplodeOpen, loginUser }) {
   const handleTubnailFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedTumbnailFile(file);
-    setPreviewImage(URL.createObjectURL(file)); // Create a preview image URL
+    setPreviewImage(URL.createObjectURL(file)); 
   };
 
   const handleVideoFileChange = (event) => {
@@ -143,7 +142,7 @@ function Upload({ setUplodeOpen, loginUser }) {
       console.log("Thumbnail image available at", thumbnailDownloadURL);
   
       const podcastData = {
-        uploderId: loginUser,
+        uploderId: loginUser || userData,
         name: podcastName,
         desc: podcastDescription,
         tags: tags,

@@ -14,6 +14,7 @@ import PodcastDetails from './pages/PodcastDetails';
 import FilterdItems from './components/FilterdItems';
 import ToastMessage from './components/ToastMessage';
 import Audioplayer from './components/Audioplayer';
+import axios from "axios";
 
 
 function App() {
@@ -29,6 +30,25 @@ function App() {
 
   const [snackbarOpen, setSnackbarOpen] = useState(false); 
   const [snackbarMessage, setSnackbarMessage] = useState(""); 
+
+  const [userData, setUserdata] = useState({});
+
+  const fetchUserData = async () => {
+    try {
+      const response = await axios.get("http://localhost:4000/sigin/sucess", { withCredentials: true });
+      setUserdata(response.data.user);
+      console.log("User Data:", response.data.user);
+      setIsLogin(true)
+    } catch (err) {
+      console.error('Error fetching user data:', err);
+      
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData()
+  }, []);
+
 
   useEffect(() => {
     const storedUserName = localStorage.getItem('userName');
@@ -65,7 +85,7 @@ function App() {
           <Signin setOpenSigniN={setOpenSigniN} setOpenSignUp={setOpenSignUp} setIsLogin={setIsLogin} loginDetails={loginDetails} setSnackbarOpen={setSnackbarOpen} setSnackbarMessage={setSnackbarMessage} />
         )}
         {uplodeOpen && <div className="backdrop"></div>}
-        {uplodeOpen && <Uplode setUplodeOpen={setUplodeOpen} loginUser={loginUser} />}
+        {uplodeOpen && <Uplode setUplodeOpen={setUplodeOpen} loginUser={loginUser} userData={userData}  />}
 
         <div className="container">
         {openDialog && details && details.length > 0 && details[0].category === "Audio" && (
@@ -74,12 +94,12 @@ function App() {
 
         {menuOpen && <Sidebar setmenuOpen={setmenuOpen}  setUplodeOpen={setUplodeOpen} isLogin={isLogin} setIsLogin={setIsLogin} setOpenSigniN={setOpenSigniN} />} 
           <div className="frame">
-            <Navbar setSnackbarMessage={setSnackbarMessage} setSnackbarOpen={setSnackbarOpen} setmenuOpen={setmenuOpen} menuOpen={menuOpen} setOpenSigniN={setOpenSigniN} isLogin={isLogin} loginUser={loginUser} setIsLogin={setIsLogin} />
+            <Navbar userData={userData}  setSnackbarMessage={setSnackbarMessage} setSnackbarOpen={setSnackbarOpen} setmenuOpen={setmenuOpen} menuOpen={menuOpen} setOpenSigniN={setOpenSigniN} isLogin={isLogin} loginUser={loginUser} setIsLogin={setIsLogin} />
             <Routes>
               <Route path="/" exact element={<Dashboard loginUser={loginUser} fav={fav} />} />
               <Route path="/search" exact element={<Search />} />
               <Route path="/favourites" exact element={<Favourites favitem={favitem} />} />
-              <Route path="/pddetails/:id" exact element={<PodcastDetails handleOpenaudipalyer={handleOpenaudipalyer} setDetails={setDetails} details={details} setOpenDialog={setOpenDialog} openDialog={openDialog} />} />
+              <Route path="/pddetails/:id" exact element={<PodcastDetails userData={userData} handleOpenaudipalyer={handleOpenaudipalyer} setDetails={setDetails} details={details} setOpenDialog={setOpenDialog} openDialog={openDialog} />} />
               <Route path="/showPodcasts/:value" exact element={<FilterdItems favitem={favitem} />} />
             </Routes>
            <ToastMessage snackbarOpen={snackbarOpen} snackbarMessage={snackbarMessage} setSnackbarOpen={setSnackbarOpen} />
