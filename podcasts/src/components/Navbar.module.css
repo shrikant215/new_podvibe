@@ -1,24 +1,10 @@
 @import '../utils/Themes.css';
 
 .navbarDiv{
-    /* display: flex;
-    justify-content: space-between; */
-    /* width: 100%; */
-    /* padding: 16px 40px; */
-    /* align-items: center; */
     color: var(--text_primary);
-    /* gap: 30px; */
     background: var(--bgLight);
-    /* border-radius: 16px; */
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-    /* backdrop-filter: blur(5.7px); */
-    /* -webkit-backdrop-filter: blur(5.7px); */
-
-    /* @media (max-width: 1100px){
-    padding: 10px 10px;
-    gap: 20px;
-    width: 50%;
-    } */
+   
 
     display: flex;
     justify-content: space-between;

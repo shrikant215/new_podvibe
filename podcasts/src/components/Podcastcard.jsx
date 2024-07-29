@@ -66,9 +66,10 @@ function Podcastcard({ item, favorites, setFavorites }) {
         </div>
         <div className={styles.cardInformation}>
           <div className={styles.mainInfo}>
-            <div className={styles.title}>{item.name}</div>
-            <div className={styles.dicription}>{item.desc}</div>
-
+            <div className={styles.naminfoooo}>
+              <div className={styles.title}>{item.name}</div>
+              <div className={styles.dicription}>{item.desc}</div>
+            </div>
             <div className={styles.creatorInfo}>
               <div className={styles.creater}>
                 {typeof item.uploderId === "string" ? (
@@ -109,4 +110,3 @@ function Podcastcard({ item, favorites, setFavorites }) {
 }
 
 export default Podcastcard;
-  

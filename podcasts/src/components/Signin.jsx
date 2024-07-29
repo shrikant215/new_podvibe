@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { MailRounded, PasswordRounded, Visibility, VisibilityOff } from "@mui/icons-material";
 import axios from "axios";
+import { CircularProgress } from "@mui/material";
 const apiUrl = process.env.REACT_APP_API_URL;
 
 
@@ -25,6 +26,8 @@ function Signin({ setOpenSigniN, setOpenSignUp, setIsLogin, loginDetails, setSna
     email: '',
     password: ''
   });
+const [loding, setLoding] = useState(false);
+
 
 
   const handleInputChange = (event) => {
@@ -33,6 +36,7 @@ function Signin({ setOpenSigniN, setOpenSignUp, setIsLogin, loginDetails, setSna
   };
 
   const handleSubmit = async(event) => {
+    setLoding(true)
     event.preventDefault();
     try{
       const response = await axios.post(`${apiUrl}/api/login`,formData)
@@ -45,11 +49,13 @@ function Signin({ setOpenSigniN, setOpenSignUp, setIsLogin, loginDetails, setSna
       setSnackbarOpen(true);
       setSnackbarMessage(response.data.message)
       setOpenSigniN(false);
+      setLoding(false)
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
       }
       return response.data;
     }catch(err){
+      setLoding(false)
       console.log(err)
       setSnackbarOpen(true);
       setSnackbarMessage("wrong email or password")
@@ -121,15 +127,9 @@ function Signin({ setOpenSigniN, setOpenSignUp, setIsLogin, loginDetails, setSna
     }
   }
 
-  const handleSnackbarClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setSnackbarOpen(false);
-  };
-
   const loginWithGoogle =async() => {
-    window.open("http://localhost:4000/auth/google/callback", "_self")
+    setLoding(true)
+    window.open(`${apiUrl}/auth/google/callback`, "_self")
    
   }
 
@@ -147,8 +147,15 @@ function Signin({ setOpenSigniN, setOpenSignUp, setIsLogin, loginDetails, setSna
           <DialogContent>
             <form onSubmit={handleSubmit}>
               <div className={styles.SignupGoogle} onClick={loginWithGoogle}>
-                <Google />
-                Sign in with Google
+                {loding ? (
+           <CircularProgress color="inherit" size={20} />
+                ):(
+                  <>
+                  <Google />
+                  Sign in with Google
+                  </>
+                )}
+               
               </div>
 
               <div className={styles.Divider}>
@@ -206,7 +213,11 @@ function Signin({ setOpenSigniN, setOpenSignUp, setIsLogin, loginDetails, setSna
                   disabled={!areInputsFilled()}
                   style={{ backgroundColor: areInputsFilled() ? '#be1adb' : '' }}
                 >
-                  SignIn
+                  {loding ? (
+           <CircularProgress color="inherit" size={20} />
+                  ):(            
+<>SignIn</>
+                  )}
                 </button>
               </div>
 

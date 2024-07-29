@@ -36,7 +36,6 @@
     width: 220px;
     height: 140px;
     border-radius: 6px;
-    /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); */
     &:hover{
         box-shadow: 0 4px  30px  rgba(0, 0, 0, 0.4);
     }
@@ -62,6 +61,8 @@
     font-weight: 450;
     padding: 14px 0px 0px 0px;
     width: 100%;
+    flex-direction: column;
+    justify-content: space-between; 
 }
 .mainInfo{
     display: flex;
@@ -91,11 +92,9 @@
 }
 .creatorInfo{
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;   
-    margin-bottom: 0%;
-    
+    flex-direction: column;
+    /* align-items: center; */
+    gap: 8px;
 }
 .creater{
     display: flex;
@@ -139,13 +138,11 @@
     height: 4rem;
     width: 4rem;
     border-radius: 10px;    
-    /* margin: 10px; */
     justify-self: flex-start;
     outline: 1px solid white;
 }
 .audioPlrContainer{
     background-color: var(--card);
-    /* margin: 10px; */
 }
 .APmodal{
     display: flex;

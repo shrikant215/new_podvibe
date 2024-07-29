@@ -32,10 +32,11 @@ function App() {
   const [snackbarMessage, setSnackbarMessage] = useState(""); 
 
   const [userData, setUserdata] = useState({});
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const fetchUserData = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/sigin/sucess", { withCredentials: true });
+      const response = await axios.get(`${apiUrl}/sigin/sucess`, { withCredentials: true });
       setUserdata(response.data.user);
       console.log("User Data:", response.data.user);
       setIsLogin(true)

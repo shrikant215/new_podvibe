@@ -13,7 +13,6 @@
   }
 }
 .filterContainer{
-    /* height: 100vh; */
     display: flex;
     flex-direction: column;
     background-color: var(--bg);
@@ -160,6 +159,22 @@ span{
   }
 }
 
+.viewsMonths{
+  display: flex;
+  gap: 10px;
+  margin-left: 20px;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.creatorName{
+  color: white;
+  @media (max-width: 768px) {
+    font-size: 10px;
+    display: flex;
+  }
+}
 .pdImg{
    width: 250px;
   height: 250px;
@@ -177,6 +192,10 @@ span{
 .pdBox{
   display: flex;
   gap: 20px;
+  @media (max-width: 768px) {
+    flex-direction: column; 
+  }
+
 }
 .pdtitle{
   font-size: 30px;
@@ -199,8 +218,8 @@ span{
   align-items: center;
   justify-content: center;
   border-radius: 15px;
-
 }
+
 .pdFooter{
   margin-top: 60px;
 }
@@ -216,7 +235,6 @@ span{
 .episodeContainer{
   background-color: var(--bg);
   border-radius: 10px;
-  /* margin: 10px; */
   margin-top: 30px;
   padding: 20px 30px;
   cursor: pointer;
@@ -253,9 +271,6 @@ span{
   margin: 0px 20px;
   object-fit: cover;
   margin-top: 30px;
-  /* margin: 20px; */
-  /* padding: 20px;
-  overflow: hidden; */
 }
 .videossss{
   display: flex;
@@ -265,20 +280,18 @@ span{
   outline: none;
   margin: 30px;
   padding: 30px;
-  /* width: 50rem; */
-  /* margin-left: 22em; */
 }
 .videossss :focus{
   outline: none;
 }
 .pdContainer{
-  padding: 20px 30px;
-padding-bottom: 200px;
-height: 100%;
-overflow-y: scroll;
 display: flex;
-flex-direction: column;
+overflow-y: scroll;
+flex-direction: row;
 gap: 20px;
+@media (max-width: 768px) {
+  flex-direction: column; 
+}
 }
 
 

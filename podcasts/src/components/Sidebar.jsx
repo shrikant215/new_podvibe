@@ -12,11 +12,12 @@ import {
   LoginRounded,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 function Sidebar({ menuOpen, setUplodeOpen, isLogin, setIsLogin, setOpenSigniN, setmenuOpen }) {
 
   const handleLogout = () => {
-    window.open("http://localhost:4000/logout","_self")
+    window.open(`${apiUrl}/logout`,"_self")
     
     localStorage.clear();
     setIsLogin(false);

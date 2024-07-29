@@ -66,30 +66,19 @@ function PodcastDetails({
 
                 <div className={styles.pdFooter}>
                   <div className={styles.pdTags}>{details[0].tags}</div>
-                  <div style={{ display: "flex" }}>
+                  <div className={styles.avvvvide} style={{ display: "flex", gap:'10px', justifyContent:'center', display:'flex', alignItems:'center', }}>
                   <Avatar
                     style={{ width: "26px", height: "26px" }}
                     src={details[0].uploderId.image}
                   >
                     {typeof details[0].uploderId === "object" && details[0].uploderId.displayName 
                       ? details[0].uploderId.displayName.charAt(0).toUpperCase() 
-                      : "U"} {/* Default fallback character */}
+                      : "U"}
                   </Avatar>  
                   <div className={styles.creatorName}>{details[0].uploderId.displayName}</div>
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "10px",
-                        marginLeft: "20px",
-                        color: "white",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        position: "relative",
-                        top: "-12px",
-                      }}
-                    >
-                      <div style={{ fontSize: "12px" }}> 234 views</div>
-                      <div style={{ fontSize: "12px" }}> 2 months ago</div>
+                    <div className={styles.viewsMonths}>
+                      <div style={{ fontSize: "12px" }}> 0 views</div>
+                      <div style={{ fontSize: "12px" }}> 0 months ago</div>
                       <PlayCircleRounded
                         style={{ height: "50px", width: "60px" }}
                         className={styles.pdPlayicon}

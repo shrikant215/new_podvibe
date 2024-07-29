@@ -11,7 +11,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { refreshToken } from 'firebase-admin/app';
 import { profile } from 'console';
-import session from "express-session";
+import session from "cookie-session";
 import passport from "passport"
 import { Strategy as OAuth2Strategy } from 'passport-google-oauth2';
 // import jwt from 'jsonwebtoken';
@@ -110,7 +110,6 @@ app.get('/auth/google/callback',
 
 
 app.get("/sigin/sucess", async(req, res) => {
-  console.log("hhhhhhhhhhhhh",req.user)
   if (req.user) {
     res.status(200).json({ message: "Login successful", user: req.user });
   } else {
@@ -136,8 +135,8 @@ app.use((err, req, res, next) => {
 // Connect to MongoDB
 mongoose
   .connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
   })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Error connecting to MongoDB:", err));
