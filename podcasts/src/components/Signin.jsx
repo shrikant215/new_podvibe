@@ -40,10 +40,10 @@ const [loding, setLoding] = useState(false);
     event.preventDefault();
     try{
       const response = await axios.post(`${apiUrl}/api/login`,formData)
-      
-      localStorage.setItem("userId", response.data.userId);
-      localStorage.setItem("userName", response.data.name); 
-      loginDetails(response.data.name)
+      localStorage.setItem("userId", response.data.user._id);
+      localStorage.setItem("userName", response.data.user.displayName); 
+      loginDetails(response.data.user.displayName)
+      console.log(response.data.user)
       console.log("response",response)
       setIsLogin(true)
       setSnackbarOpen(true);
@@ -53,6 +53,7 @@ const [loding, setLoding] = useState(false);
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
       }
+      console.log("response.data",response.data)
       return response.data;
     }catch(err){
       setLoding(false)
@@ -130,7 +131,6 @@ const [loding, setLoding] = useState(false);
   const loginWithGoogle =async() => {
     setLoding(true)
     window.open(`${apiUrl}/auth/google/callback`, "_self")
-   
   }
 
   return (
@@ -148,7 +148,7 @@ const [loding, setLoding] = useState(false);
             <form onSubmit={handleSubmit}>
               <div className={styles.SignupGoogle} onClick={loginWithGoogle}>
                 {loding ? (
-           <CircularProgress color="inherit" size={20} />
+           <CircularProgress sx={{ color: 'white' }} size={20} />
                 ):(
                   <>
                   <Google />
@@ -214,7 +214,7 @@ const [loding, setLoding] = useState(false);
                   style={{ backgroundColor: areInputsFilled() ? '#be1adb' : '' }}
                 >
                   {loding ? (
-           <CircularProgress color="inherit" size={20} />
+           <CircularProgress sx={{ color: 'white' }} size={20} />
                   ):(            
 <>SignIn</>
                   )}

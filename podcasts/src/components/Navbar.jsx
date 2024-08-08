@@ -1,44 +1,53 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./Navbar.module.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import { PersonRounded } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
-import axios from "axios";
-const apiUrl = process.env.REACT_APP_API_URL;
 
-
-function Navbar({   setOpenSigniN, isLogin, loginUser, setmenuOpen, menuOpen, setIsLogin, setSnackbarOpen, setSnackbarMessage, userData }) {
-  
+function Navbar({
+  setOpenSigniN,
+  isLogin,
+  loginUser,
+  setmenuOpen,
+  menuOpen,
+  setIsLogin,
+  setSnackbarOpen,
+  setSnackbarMessage,
+  userData,
+}) {
   const menuHanckeClick = () => {
-    setmenuOpen(!menuOpen)
-    }
+    setmenuOpen(!menuOpen);
+  };
 
-    
-  
+  const hasUserData = userData && Object.keys(userData).length > 0;
+  const displayName = hasUserData ? userData.displayName : '';
+  const avatarSrc = hasUserData ? userData.image : '';
+
   return (
     <div className={styles.navbarDiv}>
-      <MenuIcon onClick={menuHanckeClick} style={{cursor:'pointer'}} />
-      {Object.keys(userData)?.length > 0 || loginUser ?  <div className={styles.wcdata}>Welcome,  {loginUser}   {userData.displayName} </div> : <>&nbsp;</>}
-          
-      {Object.keys(userData)?.length > 0 || loginUser ?( 
-        <>
-          <div>
-            <Avatar src={userData.image}>
-            {userData.displayName.charAt(0).toUpperCase()}
-            {loginUser.charAt(0).toUpperCase()}
-            </Avatar>
-          </div>
-        </>
+      <MenuIcon onClick={menuHanckeClick} style={{ cursor: "pointer" }} />
+      {hasUserData || loginUser ? (
+        <div className={styles.wcdata}>
+          Welcome, {loginUser} {displayName}
+        </div>
       ) : (
-        <>
-          <div
-            className={styles.loginButton}
-            onClick={() => setOpenSigniN(true)}
-          >
-           <div className={styles.PersonRounded}> <PersonRounded /> </div>
-            <div>Login</div> 
+        <>&nbsp;</>
+      )}
+
+      {hasUserData || loginUser ? (
+        <div>
+          <Avatar src={avatarSrc}>
+            {displayName.charAt(0).toUpperCase()}
+            {loginUser && loginUser.charAt(0).toUpperCase()}
+          </Avatar>
+        </div>
+      ) : (
+        <div className={styles.loginButton} onClick={() => setOpenSigniN(true)}>
+          <div className={styles.PersonRounded}>
+            <PersonRounded />
           </div>
-        </>
+          <div>Login</div>
+        </div>
       )}
     </div>
   );

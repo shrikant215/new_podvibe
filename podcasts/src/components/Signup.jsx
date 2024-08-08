@@ -32,7 +32,7 @@ function Signup({
   const [buttonDissable, setButtonDissable] = useState(false);
   const apiUrl = process.env.REACT_APP_API_URL;
   const [formData, setFormData] = useState({
-    name: "",
+    displayName: "",
     email: "",
     password: "",
     otp: "",
@@ -64,7 +64,9 @@ function Signup({
       const response = await axios.post(`${apiUrl}/api/signup`, formData);
       setLoding(false);
       console.log(response.data.message);
+      setOpenSignUp(false);
       alert("Signup successful");
+
     } catch (error) {
       console.log(error.response.data.message);
       alert(error.response.data.message);
@@ -89,7 +91,7 @@ function Signup({
     setButtonDissable(boolien);
   };
 
-  const name = formData.name;
+  const name = formData.displayName;
   const email = formData.email;
   const password = formData.password;
   useEffect(() => {
@@ -187,7 +189,7 @@ function Signup({
             <form onSubmit={handleSubmit}>
               <div className={styles.SignupGoogle} onClick={loginWithGoogle}>
                 {loding ? (
-                  <CircularProgress color="inherit" size={20} />
+                  <CircularProgress sx={{ color: 'white' }} size={20} />
                 ) : (
                   <>
                     <Google /> Sign in with Google
@@ -205,7 +207,7 @@ function Signup({
                 <PersonRounded />
                 <input
                   type="text"
-                  name="name"
+                  name="displayName"
                   placeholder="Fill Name"
                   className={styles.SignupNameInput}
                   value={formData.name}
@@ -291,7 +293,7 @@ function Signup({
                   style={{ backgroundColor: buttonDissable ? "#be1adb" : "" }}
                 >
                   {loding ? (
-                    <CircularProgress color="inherit" size={20} />
+                    <CircularProgress sx={{ color: 'white' }} size={20} />
                   ) : (
                     <> Create Account</>
                   )}

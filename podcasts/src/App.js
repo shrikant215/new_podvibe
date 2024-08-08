@@ -34,17 +34,18 @@ function App() {
   const [userData, setUserdata] = useState({});
   const apiUrl = process.env.REACT_APP_API_URL;
 
+
   const fetchUserData = async () => {
     try {
       const response = await axios.get(`${apiUrl}/sigin/sucess`, { withCredentials: true });
+      console.log("user",response.data.user);
       setUserdata(response.data.user);
-      console.log("User Data:", response.data.user);
       setIsLogin(true)
-    } catch (err) {
+    } catch (err) { 
       console.error('Error fetching user data:', err);
-      
     }
   };
+  
 
   useEffect(() => {
     fetchUserData()
@@ -69,7 +70,6 @@ function App() {
 
   const handleOpenaudipalyer = () => {
     setOpenDialog(true);
-
   }
 
   const handleCloseDialog = () => {
