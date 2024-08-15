@@ -37,6 +37,7 @@ function App() {
 
   const fetchUserData = async () => {
     try {
+      console.log("jjjjjjjjjjjjjjjjjjjj",userData)
       const response = await axios.get(`${apiUrl}/sigin/sucess`, { withCredentials: true });
       console.log("user",response.data.user);
       setUserdata(response.data.user);

@@ -42,12 +42,10 @@ const clientsecret = process.env.GOOGLE_CLIENT_SECRET;
 
 
 app.use(cors({
-  origin:  'http://localhost:3000',
+  origin: 'https://podvibe-srjk-91bde6.netlify.app',
   credentials: true,
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  preflightContinue: false,
-  optionsSuccessStatus: 204
 }));
+
 app.use(express.json());
 app.use(bodyParser.json());
 app.use("/uploads", express.static("uploads"));
@@ -66,7 +64,8 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false } 
+  store: MongoStore.create({ mongoUrl: uri }), 
+  cookie: { secure: true } 
 
 }));
 
@@ -74,20 +73,15 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-// const callbackURL = "http://localhost:4000/auth/google/callback";
-// process.env.NODE_ENV === 'production'
-//   ? 'https://podvibe-backend-server.onrender.com/auth/google/callback'
-//   : 'http://localhost:4000/auth/google/callback';
-
 passport.use(
   new OAuth2Strategy({
     clientID: clientId,
     clientSecret: clientsecret,
-    callbackURL: "http://localhost:4000/auth/google/callback",
+    callbackURL: "https://podvibe-backend-server.onrender.com/auth/google/callback",
     scope: ["profile","email"],
   },
 async(accessToken, refreshToken, profile,done)=>{
-  // console.log("profile", profile)
+  console.log("profile", profile)
   try{
     if (!profile) {
       throw new Error('Profile object is null');
@@ -110,12 +104,26 @@ async(accessToken, refreshToken, profile,done)=>{
 })
 );
 
+// passport.serializeUser(function(user, done) {
+//   console.log("111111",null, user);
+//   done(null, user);
+// });
+
+// passport.deserializeUser(function(obj, done) {
+//   console.log("222222",null, obj);
+//   done(null, obj);
+// });
 passport.serializeUser(function(user, done) {
-  done(null, user);
+  done(null, user._id); // Store only the user ID in the session
 });
 
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
+passport.deserializeUser(async function(id, done) {
+  try {
+    const user = await User.findById(id);
+    done(null, user); // Attach the full user object to req.user
+  } catch (err) {
+    done(err);
+  }
 });
 
 // Initial Google OAuth login
@@ -123,15 +131,19 @@ app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "em
 
 
 app.get('/auth/google/callback',
-  passport.authenticate('google', { successRedirect:  'http://localhost:3000', failureRedirect: 'http://localhost:3000' })
+  passport.authenticate('google', { successRedirect:  'https://podvibe-srjk-91bde6.netlify.app', 
+    failureRedirect: 'https://podvibe-srjk-91bde6.netlify.app' })
 );
 
 app.get("/sigin/sucess", async(req, res) => {
-  // console.log("dddddddddddddddd",req.user)
+  console.log("dddddddddddddddd",req.user)
+  console.log("Session Data:", req.session);
+
   if (req.user) {
-    // console.log(req.user,"req.user")
+    console.log(req.user,"req.user")
     res.status(200).json({ message: "Login successful", user: req.user });
   } else {
+    console.log("Not authorized")
     res.status(400).json({ message: "Not authorized" });
   }
 })
@@ -139,7 +151,7 @@ app.get("/sigin/sucess", async(req, res) => {
 app.get("/logout", (req, res) => {
   req.logOut(function(err){
     if(err){return next(err)}
-    res.redirect( 'http://localhost:3000');
+    res.redirect( 'https://podvibe-srjk-91bde6.netlify.app');
   })
 })
 
@@ -154,8 +166,8 @@ app.use((err, req, res, next) => {
 // Connect to MongoDB
 mongoose
   .connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
   })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Error connecting to MongoDB:", err));
@@ -165,10 +177,13 @@ app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
+    console.log("user",user)
     if (!user) return res.status(401).json({ message: 'Invalid credentials' });
+    console.log("!user",!user)
 
     // const isMatch = await bcrypt.compare(password, user.password);
-    const isMatch = await (password === user.password);
+    const isMatch = await bcrypt.compare(password, user.password);
+    console.log("isMatch",isMatch)
 
     if (!isMatch) return res.status(401).json({ message: 'Invalid credentials' });
 
@@ -256,7 +271,10 @@ app.post("/api/signup", async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ message: "Username already exists" });
     } else {
-      const newUser = new User({ displayName, email, password });
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+console.log("hashedPassword",hashedPassword)
+      const newUser = new User({ displayName, email, password: hashedPassword });
       await newUser.save();
 
       const token = generateToken(newUser);
@@ -268,19 +286,6 @@ app.post("/api/signup", async (req, res) => {
   }
 });
 
-
-
-// Resolve __dirname and __filename for ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, '../podcasts/build')));
-
-// The "catchall" handler: for any request that doesn't match one above, send back React's index.html file.
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../podcasts/build/index.html'));
-});
 
 // Define port
 const PORT = process.env.PORT || 5000;
