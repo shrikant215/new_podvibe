@@ -1,6 +1,6 @@
 Podvibe Streaming Application
 
-Deploy Link : https://podvibe-dragon-eb236a.netlify.app/
+Deploy Link : https://podvibe-srjk-91bde6.netlify.app/
 
 This is a web application for streaming podvibe with the following features:
 User authentication
