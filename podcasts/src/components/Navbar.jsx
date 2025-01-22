@@ -3,46 +3,40 @@ import styles from "./Navbar.module.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import { PersonRounded } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
-
+import { useDispatch, useSelector } from 'react-redux';
+import {openSignin} from '../redux/setSigninSlice'
 function Navbar({
-  setOpenSigniN,
-  isLogin,
-  loginUser,
   setmenuOpen,
   menuOpen,
-  setIsLogin,
-  setSnackbarOpen,
-  setSnackbarMessage,
-  userData,
 }) {
   const menuHanckeClick = () => {
     setmenuOpen(!menuOpen);
   };
 
-  const hasUserData = userData && Object.keys(userData).length > 0;
-  const displayName = hasUserData ? userData.displayName : '';
-  const avatarSrc = hasUserData ? userData.image : '';
+
+  const { currentUser } = useSelector(state => state.user);
+  const dispatch = useDispatch();
 
   return (
     <div className={styles.navbarDiv}>
       <MenuIcon onClick={menuHanckeClick} style={{ cursor: "pointer" }} />
-      {hasUserData || loginUser ? (
+
+      {currentUser ? (
         <div className={styles.wcdata}>
-          Welcome, {loginUser} {displayName}
+          Welcome, {currentUser.name}
         </div>
       ) : (
         <>&nbsp;</>
       )}
 
-      {hasUserData || loginUser ? (
+      {currentUser ? (
         <div>
-          <Avatar src={avatarSrc}>
-            {displayName.charAt(0).toUpperCase()}
-            {loginUser && loginUser.charAt(0).toUpperCase()}
+          <Avatar src={currentUser.img}>
+            {currentUser.name.charAt(0).toUpperCase()}
           </Avatar>
         </div>
       ) : (
-        <div className={styles.loginButton} onClick={() => setOpenSigniN(true)}>
+        <div className={styles.loginButton} onClick={() => dispatch(openSignin())}>
           <div className={styles.PersonRounded}>
             <PersonRounded />
           </div>

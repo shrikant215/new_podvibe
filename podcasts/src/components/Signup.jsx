@@ -4,9 +4,10 @@ import { CloseRounded, Google } from "@mui/icons-material";
 import { IconButton, Modal } from "@mui/material";
 import validator from "validator"; // Import the validator library
 import { Dialog, DialogTitle, DialogContent, TextField } from "@mui/material";
-import { useGoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from '@react-oauth/google';
 import { CircularProgress } from "@mui/material";
-
+import { GoogleLogin } from '@react-oauth/google';
+import {signUp} from '../api/index.js'
 import {
   PersonRounded,
   MailRounded,
@@ -14,29 +15,32 @@ import {
   TroubleshootRounded,
 } from "@mui/icons-material";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { openSignin } from '../redux/setSigninSlice';
+import {loginStart, loginSuccess, loginFailure} from '../redux/userSlice';
+import { openSnackbar, closeSnackbar} from '../redux/snackbarSlice';
+
 const apiUrl = process.env.REACT_APP_API_URL;
 
 function Signup({
-  setOpenSignUp,
-  setOpenSigniN,
-  setIsLogin,
-  loginDetails,
-  setSnackbarOpen,
-  setSnackbarMessage,
+  setOpenSignUp
 }) {
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const [nameCorrect, setNameCorrect] = useState(false);
-  const [loding, setLoding] = useState(false);
   const [passwordCorrect, setPasswordCorrect] = useState(false);
   const [credentialErr, setcredentialErr] = useState("");
   const [emailError, setEmailError] = useState("");
   const [buttonDissable, setButtonDissable] = useState(false);
-  const apiUrl = process.env.REACT_APP_API_URL;
   const [formData, setFormData] = useState({
-    displayName: "",
+    name: "",
     email: "",
     password: "",
     otp: "",
   });
+
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.user);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -46,31 +50,40 @@ function Signup({
   const handleSendOTP = async () => {
     try {
       console.log("handleSendOTP", formData.email);
-      const response = await axios.post(`${apiUrl}/api/sendSignupOTP`, {
+      const response = await axios.post(`${apiUrl}/auth/sendSignupOTP`, {
         email: formData.email,
       });
       console.log("optResopnce", response);
-      alert("OTP sent successfully!");
+      dispatch(openSnackbar({message: "OTP sent successfully!", severity: 'success'}));
     } catch (error) {
+      if(error.status === 400){
+        dispatch(openSnackbar({message: error.response.data.message, severity: 'error'}));
+      }
+      if (error.status === 500) {
+      dispatch(openSnackbar({message: "Failed to send OTP. Please try again.", severity: 'error'}));
+      }
       console.error("Failed to send OTP:", error);
-      alert("Failed to send OTP. Please try again.");
+      if(error.message === "Network Error"){
+      dispatch(openSnackbar({message: "Network Error", severity: 'error'}));
+      }
     }
   };
 
   const handleSubmit = async (event) => {
-    setLoding(true);
-    event.preventDefault(); // Prevent form submission
+    dispatch(loginStart());
+        event.preventDefault(); 
+        console.log("fffffff");
     try {
-      const response = await axios.post(`${apiUrl}/api/signup`, formData);
-      setLoding(false);
-      console.log(response.data.message);
+      const response = await signUp(formData);
+      console.log("res",response)
       setOpenSignUp(false);
-      alert("Signup successful");
-
+      dispatch(loginSuccess(response.data));
+      dispatch(openSnackbar({message: "Signup successful!", severity: 'success'}));
     } catch (error) {
-      console.log(error.response.data.message);
-      alert(error.response.data.message);
-      setLoding(false);
+      dispatch(loginFailure());
+      console.log(error);
+      dispatch(openSnackbar({message: "some thing went wrong!", severity: 'Error'}));
+
     }
   };
 
@@ -80,7 +93,7 @@ function Signup({
 
   const openSignIn = () => {
     setOpenSignUp(false);
-    setOpenSigniN(true);
+   dispatch(openSignin())
   };
 
   // Function to check if all input fields are filled
@@ -91,7 +104,7 @@ function Signup({
     setButtonDissable(boolien);
   };
 
-  const name = formData.displayName;
+  const name = formData.name;
   const email = formData.email;
   const password = formData.password;
   useEffect(() => {
@@ -152,28 +165,28 @@ function Signup({
     }
   };
 
-  const loginWithGoogle = () => {
-    setLoding(true);
-    window.open(`${apiUrl}/auth/google/callback`, "_self");
-  };
+  // const loginWithGoogle = () => {
+  //   setLoding(true);
+  //   window.open(`${apiUrl}/auth/google/callback`, "_self");
+  // };
 
-  const fetchUserData = async () => {
-    setLoding(true);
-    try {
-      const response = await axios.get(`${apiUrl}/sigin/sucess`, {
-        withCredentials: true,
-      });
-      console.log(response,"rrrrrrrrrrrrrrrr")
-      setLoding(false);
-    } catch (err) {
-      console.error("Error fetching user data:", err);
-      setLoding(false);
-    }
-  };
+  // const fetchUserData = async () => {
+  //   setLoding(true);
+  //   try {
+  //     const response = await axios.get(`${apiUrl}/sigin/sucess`, {
+  //       withCredentials: true,
+  //     });
+  //     console.log(response,"rrrrrrrrrrrrrrrr")
+  //     setLoding(false);
+  //   } catch (err) {
+  //     console.error("Error fetching user data:", err);
+  //     setLoding(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchUserData();
-  }, []);
+  // useEffect(() => {
+  //   fetchUserData();
+  // }, []);
 
   return (
     <Modal className={styles.model} open={true} onClose={handleClose}>
@@ -187,8 +200,16 @@ function Signup({
           </DialogTitle>
           <DialogContent>
             <form onSubmit={handleSubmit}>
-              <div className={styles.SignupGoogle} onClick={loginWithGoogle}>
-                {loding ? (
+              <div className={styles.SignupGoogle}>
+              {/* <GoogleLogin
+                  onSuccess={(credentialResponse) => {
+                    console.log(credentialResponse);
+                  }}
+                  onError={() => {
+                    console.log("Login Failed");
+                  }}
+                /> */}
+                {loading ? (
                   <CircularProgress sx={{ color: 'white' }} size={20} />
                 ) : (
                   <>
@@ -207,7 +228,7 @@ function Signup({
                 <PersonRounded />
                 <input
                   type="text"
-                  name="displayName"
+                  name="name"
                   placeholder="Fill Name"
                   className={styles.SignupNameInput}
                   value={formData.name}
@@ -292,7 +313,7 @@ function Signup({
                   disabled={!buttonDissable}
                   style={{ backgroundColor: buttonDissable ? "#be1adb" : "" }}
                 >
-                  {loding ? (
+                  {loading ? (
                     <CircularProgress sx={{ color: 'white' }} size={20} />
                   ) : (
                     <> Create Account</>

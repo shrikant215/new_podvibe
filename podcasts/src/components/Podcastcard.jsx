@@ -91,13 +91,13 @@ function Podcastcard({ item, favorites, setFavorites }) {
                     }}
                     src={item.uploderId.image}
                   >
-                    {item.uploderId.displayName.charAt(0).toUpperCase()}
+                    {item.uploderId.name.charAt(0).toUpperCase()}
                   </Avatar>
                 )}
                 <div className={styles.creatorName}>
                   {typeof item.uploderId === "string"
                     ? item.uploderId
-                    : item.uploderId.displayName}
+                    : item.uploderId.name}
                 </div>
               </div>
               {/* <div className={styles.view}> 12 Views</div> */}

@@ -1,23 +1,15 @@
 import React from "react";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
-
+import { useDispatch, useSelector } from "react-redux";
+import { closeSnackbar } from '../redux/snackbarSlice';
 function ToastMessage({ snackbarOpen, snackbarMessage, setSnackbarOpen }) {
-  let severity = 'info'; 
-
-  if (snackbarMessage && typeof snackbarMessage === 'string') {
-  if (snackbarMessage.includes('Successful')) {
-    severity = 'success';
-  } else if (snackbarMessage.includes('error')) {
-    severity = 'error';
-  } else if (snackbarMessage.includes('warning')) {
-    severity = 'warning';
-  }
-}
+  const dispatch = useDispatch();
+  const {open, message, severity} = useSelector((state) => state.snackbar);
 
 
 const handleClose = () => {
-  setSnackbarOpen(false);
+  dispatch(closeSnackbar());
 };
 
   return (
@@ -27,11 +19,11 @@ const handleClose = () => {
           vertical: "bottom",
           horizontal: "left",
         }}
-        open={snackbarOpen}
+        open={open}
         autoHideDuration={4000}
         onClose={handleClose}
       >
-        <Alert severity={severity}>{snackbarMessage}</Alert>
+        <Alert severity={severity}>{message}</Alert>
       </Snackbar>
     </div>
   );

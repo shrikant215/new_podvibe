@@ -16,6 +16,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
+import { useSelector } from "react-redux";
 
 initializeApp(firebaseConfig);
 
@@ -33,6 +34,7 @@ function Upload({ setUplodeOpen, loginUser, userData }) {
   const [addEpisode, setAddEpisode] = useState(false);
   const [loading, setLoading] = useState(false);
   const [videoUrl, setVideoUrl] = useState("");
+const { currentUser  } = useSelector((state) => state.user);
 
   const handleTubnailFileChange = (event) => {
     const file = event.target.files[0];
@@ -126,11 +128,9 @@ function Upload({ setUplodeOpen, loginUser, userData }) {
       }
     );
   
-    // Wait for both uploads to complete
     try {
       await Promise.all([videoUploadTask, thumbnailUploadTask]);
   
-      // Once uploads are completed, get download URLs
       const videoDownloadURL = await getDownloadURL(
         videoUploadTask.snapshot.ref
       );
@@ -142,7 +142,7 @@ function Upload({ setUplodeOpen, loginUser, userData }) {
       console.log("Thumbnail image available at", thumbnailDownloadURL);
   
       const podcastData = {
-        uploderId: loginUser || userData,
+        uploderId: currentUser.name,
         name: podcastName,
         desc: podcastDescription,
         tags: tags,
@@ -168,7 +168,7 @@ function Upload({ setUplodeOpen, loginUser, userData }) {
     }
   };
   
-
+console.log(currentUser.id)
   const handleClose = () => {
     setUplodeOpen(false);
   };
@@ -203,7 +203,7 @@ function Upload({ setUplodeOpen, loginUser, userData }) {
             </DialogTitle>
             <DialogContent>
               <form onSubmit={handleSubmit}>
-                <div style={{ marginBottom: "10px" }}>
+                <div style={{ marginBottom: "10px", color: 'white' }}>
                   <div
                     style={{
                       fontSize: "14px",

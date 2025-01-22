@@ -131,6 +131,7 @@ function PodcastDetails({
                         {details[0].episodes[0].episodeName}
                       </div>
                       <div
+                      className={styles.epDisc}
                         style={{
                           fontWeight: "400",
                           fontSize: "14px",

@@ -12,29 +12,34 @@ import {
   LoginRounded,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {openSignin} from '../redux/setSigninSlice'
+import {logout} from '../redux/userSlice';
+import {useNavigate} from 'react-router-dom'
 const apiUrl = process.env.REACT_APP_API_URL;
 
-function Sidebar({ menuOpen, setUplodeOpen, isLogin, setIsLogin, setOpenSigniN, setmenuOpen }) {
+function Sidebar({ menuOpen, setUplodeOpen, setmenuOpen }) {
+const dispatch = useDispatch();
+const navigate = useNavigate();
+  const { currentUser } = useSelector(state => state.user);
 
-  const handleLogout = () => {
-    window.open(`${apiUrl}/logout`,"_self")
-    
-    localStorage.clear();
-    setIsLogin(false);
+  const handleLogout = () => {    
+    dispatch(logout())
+    navigate('/')
     console.log("Logged out successfully");
-  };
+  };  
 
   const checkIsLoginAction = () => {
-    if(!isLogin){
-      setOpenSigniN(true)
+    if(!currentUser){
+      dispatch(openSignin());
     }else{
       setUplodeOpen(true)
     }
   }
 
   const checkFavIsLoginAction = () => {
-    if(!isLogin){
-      setOpenSigniN(true)
+    if(!currentUser){
+      dispatch(openSignin());
     }
   }
 
@@ -66,7 +71,7 @@ function Sidebar({ menuOpen, setUplodeOpen, isLogin, setIsLogin, setOpenSigniN, 
           </div>
         </Link>
 
-        <Link onClick={checkFavIsLoginAction} to={isLogin ? '/favourites' : ''} key={'/favourites'}  style={{ textDecoration: "none" }}>
+        <Link onClick={checkFavIsLoginAction} to={currentUser ? '/favourites' : ''} key={'/favourites'}  style={{ textDecoration: "none" }}>
           <div className={styles.elements}>
           <FavoriteRounded />
             <div className={styles.navText}>Favourites</div>
@@ -82,13 +87,13 @@ function Sidebar({ menuOpen, setUplodeOpen, isLogin, setIsLogin, setOpenSigniN, 
 
 
 
-      {isLogin ? (
+      {currentUser ? (
         <div className={styles.elements} onClick={handleLogout}>
           <LogoutRounded/>
           <div className={styles.navText}>Log Out</div>
         </div>
       ) : (
-        <div className={styles.elements} onClick={() => {setOpenSigniN(true)}}>
+        <div className={styles.elements} onClick={() => { dispatch(openSignin()) }}>
           <LoginRounded/>
           <div className={styles.navText}>Log In</div>
         </div>
