@@ -1,7 +1,7 @@
 import axios from 'axios';
 // import jwt_decode from 'jwt-decode';
 
-const API = axios.create({ baseURL: `http://localhost:4000/` }); 
+const API = axios.create({ baseURL: `https://podvibe-backend-server.onrender.com/` }); 
 
 //auth
 export const signIn = async ({ email, password }) => await API.post('/auth/login', { email, password });
