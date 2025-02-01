@@ -72,11 +72,12 @@ function Signup({
   const handleSubmit = async (event) => {
     dispatch(loginStart());
         event.preventDefault(); 
-        console.log("fffffff");
     try {
+      console.log("formData",formData);
       const response = await signUp(formData);
       console.log("res",response)
       setOpenSignUp(false);
+      console.log("response.data",response.data)
       dispatch(loginSuccess(response.data));
       dispatch(openSnackbar({message: "Signup successful!", severity: 'success'}));
     } catch (error) {
@@ -107,6 +108,7 @@ function Signup({
   const name = formData.name;
   const email = formData.email;
   const password = formData.password;
+  const otp = formData.otp;
   useEffect(() => {
     if (name !== "") validateName();
     if (email) validateEmail();

@@ -55,6 +55,7 @@ function Signin({
       const res = await signIn({email, password });
       console.log(res, "hhhhhhhh");
       if (res.status === 200) {
+        console.log("res.data",res.data)
         dispatch(loginSuccess(res.data));
         dispatch(closeSignin());
         dispatch(
@@ -79,9 +80,10 @@ function Signin({
     } catch (err) {
       dispatch(loginFailure());
       console.error("Error during login:", err);
+      console.log(err)
       dispatch(
         openSnackbar({
-          message: err.message || "Something went wrong",
+          message: err.response.data.message || "Something went wrong",
           severity: "error",
         })
       );
